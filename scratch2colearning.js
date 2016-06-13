@@ -9,16 +9,16 @@
 
     // blockが呼び出された時に呼ばれる関数を登録する。
     // 下にあるdescriptorでブロックと関数のひも付けを行っている。
-    ext.do_something = function(str) {
+    ext.Obj_move = function(num) {
     };
 
     // ブロックと関数のひも付け
     var descriptor = {
         blocks: [
-            [' ', 'do_something %s', 'do_something', 'sample text'],
+            [' ', '%n 歩動かす', 'Obj_move', '10'],
         ]
     };
 
     // 最後にExtensionを登録する
-    ScratchExtensions.register('Simple extension', descriptor, ext);
+    ScratchExtensions.register('Scratch 2 Co-learning', descriptor, ext);
 })({});
