@@ -20,8 +20,13 @@
             [' ', '反時計回りに %n 度回す', 'Obj_move', '15'],
             [' ', '%n 度に向ける', 'Obj_move', '10'],
             [' ', 'x座標を %n ずつ変える', 'Obj_move', '10'],
-            [' ', 'ｙ座標を %n ずつ変える', 'Obj_move', '10']
+            [' ', 'ｙ座標を %n ずつ変える', 'Obj_move', '10'],
+            ['r', '%m.List_member さんの %m.List_xy ', 'Obj_move', '']
         ],
+        menus:{
+            List_member: ['A','B','C','D'],
+            List_xy:['x座標','y座標']
+        }
     };
 
     // 最後にExtensionを登録する
