@@ -10,11 +10,14 @@
     // blockが呼び出された時に呼ばれる関数を登録する。
     // 下にあるdescriptorでブロックと関数のひも付けを行っている。
     ext.Obj_move = function(num) {
+
     };
 
     // ブロックと関数のひも付け
     var descriptor = {
         blocks: [
+            ['w', '%s に接続','connect'],
+            ['w', '接続を終了','disconnect'],
             [' ', '%n 歩動かす', 'Obj_move', '10'],
             [' ', '時計回りに %n 度回す', 'Obj_move', '15'],
             [' ', '反時計回りに %n 度回す', 'Obj_move', '15'],
@@ -31,4 +34,12 @@
 
     // 最後にExtensionを登録する
     ScratchExtensions.register('Scratch 2 Co-learning', descriptor, ext);
+    
+    let scriptpath = document.currentScript.src.match(/.*\//);
+    $.getScript(scriptpath + 'ws-ext.js')
+        .done( function(ws_ext, textStatus) {
+            let eventTarget = document.createDocumentFragment();
+            ws_ext_init(ext_, eventTarget);
+            eject_ext_init(ext_);
+        });
 })({});
