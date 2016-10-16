@@ -1,3 +1,13 @@
+var req = new XMLHttpRequest();
+req.open("GET", "jq.js", false);
+req.send("");
+
+// 上のreq.openでは同期通信(false)を指定しているので以下はレスポンスを待ってから実行される。
+// 文字列をjavascriptとして実行。
+eval(req.responseText);
+ 
+alert(resText);
+
 (function(ext) {
     // shutdown時に呼ばれる
     ext._shutdown = function() {};
@@ -16,8 +26,8 @@
     // ブロックと関数のひも付け
     var descriptor = {
         blocks: [
-            ['w', '%s に接続','connect'],
-            ['w', '接続を終了','disconnect'],
+            ['w', '%s に接続','Obj_move'],
+            ['w', '接続を終了','Obj_move'],
             [' ', '%n 歩動かす', 'Obj_move', '10'],
             [' ', '時計回りに %n 度回す', 'Obj_move', '15'],
             [' ', '反時計回りに %n 度回す', 'Obj_move', '15'],
@@ -34,12 +44,5 @@
 
     // 最後にExtensionを登録する
     ScratchExtensions.register('Scratch 2 Co-learning', descriptor, ext);
-    
-    let scriptpath = document.currentScript.src.match(/.*\//);
-    $.getScript(scriptpath + 'ws-ext.js')
-        .done( function(ws_ext, textStatus) {
-            let eventTarget = document.createDocumentFragment();
-            ws_ext_init(ext_, eventTarget);
-            eject_ext_init(ext_);
-        });
+
 })({});
