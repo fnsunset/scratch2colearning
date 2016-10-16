@@ -1,14 +1,4 @@
 (function(ext) {
-    var req = new XMLHttpRequest();
-    req.open("GET", "jq.js", false);
-    req.send("");
-
-    // 上のreq.openでは同期通信(false)を指定しているので以下はレスポンスを待ってから実行される。
-    // 文字列をjavascriptとして実行。
-    eval(req.responseText);
- 
-    alert(resText);
-    
     // shutdown時に呼ばれる
     ext._shutdown = function() {};
 
