@@ -1,4 +1,7 @@
 (function(ext) {
+    var socket = io.connect('http://127.0.0.1:8080');
+	var $window = $(window);
+	var $x = $("#x"), $y = $("#y");
     // shutdown時に呼ばれる
     ext._shutdown = function() {};
 
@@ -10,7 +13,7 @@
     // blockが呼び出された時に呼ばれる関数を登録する。
     // 下にあるdescriptorでブロックと関数のひも付けを行っている。
     ext.Obj_move = function(num) {
-
+        socket.emit('browser/move', { x: 1, y: 1 });
     };
 
     // ブロックと関数のひも付け
