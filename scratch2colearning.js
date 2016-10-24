@@ -1,5 +1,5 @@
 (function(ext) {
-    var socket = io.connect('http://127.0.0.1:8080');
+    var socket = io.connect('http://192.168.2.104:8080');
 	var $window = $(window);
 	var $x = $("#x"), $y = $("#y");
     // shutdown時に呼ばれる
@@ -26,11 +26,12 @@
             [' ', '%n 度に向ける', 'Obj_move', '10'],
             [' ', 'x座標を %n ずつ変える', 'Obj_move', '10'],
             [' ', 'ｙ座標を %n ずつ変える', 'Obj_move', '10'],
-            ['r', '%m.List_member さんの %m.List_xy ', 'Obj_move', '']
+            ['r', '%m.List_member さんの %m.List_obj のx座標', 'Obj_move', ''],
+            ['r', '%m.List_member さんの %m.List_obj のy座標', 'Obj_move', '']
         ],
         menus:{
             List_member: ['A','B','C','D'],
-            List_xy:['x座標','y座標']
+            List_obj:['x座標','y座標']
         }
     };
 
