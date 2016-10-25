@@ -20,12 +20,12 @@
     var descriptor = {
         blocks: [
             [' ', '%s に接続する', 'Obj_move', '192.168.2.104'],
-            [' ', '%m.List_obj を %n 歩動かす', 'Obj_move', '','10'],
-            [' ', '%m.List_obj を時計回りに %n 度回す', 'Obj_move', '', '15'],
-            [' ', '%m.List_obj を反時計回りに %n 度回す', 'Obj_move', '', '15'],
-            [' ', '%m.List_obj を %n 度に向ける', 'Obj_move', '', '10'],
-            [' ', '%m.List_obj のx座標を %n ずつ変える', 'Obj_move', '', '10'],
-            [' ', '%m.List_obj のｙ座標を %n ずつ変える', 'Obj_move', '', '10'],
+            [' ', '%m.List_obj を %n 歩動かす', 'Obj_move', '',10],
+            [' ', '%m.List_obj を時計回りに %n 度回す', 'Obj_move', '', 15],
+            [' ', '%m.List_obj を反時計回りに %n 度回す', 'Obj_move', '', 15],
+            [' ', '%m.List_obj を %n 度に向ける', 'Obj_move', '', 10],
+            [' ', '%m.List_obj のx座標を %n ずつ変える', 'Obj_move', '', 10],
+            [' ', '%m.List_obj のｙ座標を %n ずつ変える', 'Obj_move', '', 10],
             ['r', '%m.List_member さんの %m.List_obj のx座標', 'Obj_move', '', ''],
             ['r', '%m.List_member さんの %m.List_obj のy座標', 'Obj_move', '', ''],
             ['h', '%s を受け取ったとき','Obj_move','Hello'],
