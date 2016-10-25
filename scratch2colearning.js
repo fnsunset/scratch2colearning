@@ -28,8 +28,8 @@
             [' ', '%m.List_obj のｙ座標を %n ずつ変える', 'Obj_move', '', '10'],
             ['r', '%m.List_member さんの %m.List_obj のx座標', 'Obj_move', '', ''],
             ['r', '%m.List_member さんの %m.List_obj のy座標', 'Obj_move', '', ''],
-            ['h', '%s を受け取ったとき','Hello'],
-            [' ','%s を送る','Hello']
+            ['h', '%s を受け取ったとき','Obj_move','Hello'],
+            [' ','%s を送る','Obj_move','Hello']
         ],
         menus:{
             List_member: ['A','B','C','D'],
