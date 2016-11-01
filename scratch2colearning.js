@@ -1,5 +1,6 @@
 (function(ext) {
     var socket = io.connect('http://192.168.2.104:8080');
+    var socket_id = socket.id;
     // shutdown時に呼ばれる
     ext._shutdown = function() {};
 
@@ -11,7 +12,6 @@
     // blockが呼び出された時に呼ばれる関数を登録する。
     // 下にあるdescriptorでブロックと関数のひも付けを行っている。
     ext.Obj_connect = function(str) {
-        var socket_id = socket.id;
         socket.emit('scratch/connect', { ip: str, id: socket_id });
     };
     ext.Obj_move = function(str,num) {
