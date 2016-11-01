@@ -21,10 +21,10 @@
         socket.emit('scratch/move', { obj: str, move: num, id: socket_id });
     };
     ext.Obj_cw = function(str,num) {
-        socket.emit('scratch/cw', { obj: str, rotate: num, id: socket_id });
+        socket.emit('scratch/rotate', { obj: str, rotate: num, id: socket_id });
     };
     ext.Obj_rcw = function(str,num) {
-        socket.emit('scratch/cw', { obj: str, rotate: num * -1, id: socket_id });
+        socket.emit('scratch/rotate', { obj: str, rotate: num * -1, id: socket_id });
     };
     ext.Obj_ang = function(str,num) {
         socket.emit('scratch/ang', { obj: str, angle: num, id: socket_id });
