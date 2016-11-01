@@ -1,6 +1,7 @@
 (function(ext) {
     var socket = io.connect('http://192.168.2.104:8080');
-    
+    var socket_id = socket.id;
+
     // shutdown時に呼ばれる
     ext._shutdown = function() {};
 
@@ -12,25 +13,25 @@
     // blockが呼び出された時に呼ばれる関数を登録する。
     // 下にあるdescriptorでブロックと関数のひも付けを行っている。
     ext.Obj_connect = function(str) {
-        socket.emit('scratch/connect', { x: 1, y: 1 });
+        socket.emit('scratch/connect', { ip: str, id: socket_id });
     };
     ext.Obj_move = function(str,num) {
-        socket.emit('scratch/move', { x: 1, y: 1 });
+        socket.emit('scratch/move', { obj: str, move: num, id: socket_id });
     };
     ext.Obj_cw = function(str,num) {
-        socket.emit('scratch/cw', { x: 1, y: 1 });
+        socket.emit('scratch/cw', { obj: str, rotate: num, id: socket_id });
     };
     ext.Obj_rcw = function(str,num) {
-        socket.emit('scratch/rcw', { x: 1, y: 1 });
+        socket.emit('scratch/cw', { obj: str, rotate: num * -1, id: socket_id });
     };
     ext.Obj_ang = function(str,num) {
-        socket.emit('scratch/ang', { x: 1, y: 1 });
+        socket.emit('scratch/ang', { obj: str, angle: num, id: socket_id });
     };
     ext.Obj_movex = function(str,num) {
-        socket.emit('scratch/movex', { x: 1, y: 1 });
+        socket.emit('scratch/movex', { obj: str, movex: num, id: socket_id });
     };
     ext.Obj_movey = function(str,num) {
-        socket.emit('scratch/movey', { x: 1, y: 1 });
+        socket.emit('scratch/movey', {  obj: str, movey: num, id: socket_id  });
     };
     ext.Obj_getx = function(str1,str2) {
         socket.emit('scratch/getx', { x: 1, y: 1 });
@@ -42,7 +43,7 @@
         socket.emit('scratch/res', { x: 1, y: 1 });
     };
     ext.Obj_send = function(str) {
-        socket.emit('scratch/send', { x: 1, y: 1 });
+        socket.emit('scratch/send', { mes: str, id: socket_id });
     };
     // ブロックと関数のひも付け
     var descriptor = {
