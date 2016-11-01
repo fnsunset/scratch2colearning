@@ -1,8 +1,8 @@
 (function(ext) {
     var socket = io.connect('http://192.168.2.104:8080');
     var socket_id = '';
-    var members = ['A','B','C','D'];
-    var objects = ['ねこ','モモンガ','カエル'];
+    var list_mem = ['A','B','C','D'];
+    var list_obj = ['ねこ','モモンガ','カエル'];
     socket.on('connect', function() { 
         socket_id = socket.id;
      });
@@ -20,9 +20,7 @@
     // blockが呼び出された時に呼ばれる関数を登録する。
     // 下にあるdescriptorでブロックと関数のひも付けを行っている。
     ext.Obj_connect = function(str) {
-        socket.disconnets();
-        var socket = io.connect('http://192.168.2.104:8080');
-        alert('Now you connected '+ str);
+        //接続は起動時にやってるので必要ないのでは？
     };
     ext.Obj_move = function(str,num) {
         socket.emit('scratch/move', { obj: str, move: num, id: socket_id });
@@ -74,8 +72,8 @@
             [' ','%s を送る','Obj_move','Hello']
         ],
         menus:{
-            List_member: members,
-            List_obj:objects
+            List_member: list_mem,
+            List_obj:list_obj
         }
     };
 
