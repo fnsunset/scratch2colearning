@@ -11,7 +11,10 @@
     ext._getStatus = function() {
         return {status: 2, msg: 'Ready'};
     };
-
+    //サーバ側から受信した情報を反映させる
+    socket.on('server/hello', function (data) {
+        alert('Connect Success! ID:'+socket_id );
+	});
     // blockが呼び出された時に呼ばれる関数を登録する。
     // 下にあるdescriptorでブロックと関数のひも付けを行っている。
     ext.Obj_connect = function(str) {
@@ -64,7 +67,7 @@
         ],
         menus:{
             List_member: ['A','B','C','D'],
-            List_obj:['ねこ','モモンガ']
+            List_obj:['ねこ','モモンガ','カエル']
         }
     };
 
