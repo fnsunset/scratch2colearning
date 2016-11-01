@@ -1,6 +1,6 @@
 (function(ext) {
     var socket = io.connect('http://192.168.2.104:8080');
-    var socket_id = socket.id;
+    var socket_id = 'test';
     // shutdown時に呼ばれる
     ext._shutdown = function() {};
 
