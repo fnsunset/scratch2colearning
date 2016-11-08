@@ -1,11 +1,9 @@
 (function(ext) {
-    alert("死んでる");
+    alert("1");
     var socket = io.connect('http://192.168.2.104:8080');
-    alert("繋げようとはした");
     var socket_id = '';
     var list_mem = ['A','B','C','D'];
     var list_obj = ['ねこ','モモンガ','カエル'];
-    alert("配列ができてない");
     var obj_prop = [[],[]];//obj_propは[a]さんの[b]のobj
     obj_prop[0][0] = 0;
     var allobj = list_mem.length * list_obj.length;
