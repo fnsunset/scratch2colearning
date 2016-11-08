@@ -1,5 +1,5 @@
 (function(ext) {
-    alert("1");
+    alert("2");
     var socket = io.connect('http://192.168.2.104:8080');
     var socket_id = '';
     var list_mem = ['A','B','C','D'];
@@ -8,11 +8,11 @@
     obj_prop[0][0] = 0;
     var allobj = list_mem.length * list_obj.length;
     alert("配列の長さは"+list_mem.length+"と"+list_obj.length);
-    /*for(var cnta=0; cnta < allobj; cnta++){
+    for(var cnta=0; cnta < allobj; cnta++){
         for(var cntb=0; cntb < list_obj.length; cntb++){
             obj_prop[cnta][cntb] = 0;
         }
-    }*/
+    }
     var say = new Array;    //メッセージの送受信を記録に残す用
 
     //接続が確立したら自分のIDを取得する
