@@ -6,14 +6,14 @@
     var list_mem = ['A','B','C','D'];
     var list_obj = ['ねこ','モモンガ','カエル'];
     alert("配列ができてない");
-    /*var obj_prop = [[],[]];//obj_propは[a]さんの[b]のobj
+    var obj_prop = [[],[]];//obj_propは[a]さんの[b]のobj
     alert("定義はできてる");
     for (var cnta=0; cnta < list_mem.length*list_obj.length; cnta++){
         for(var cntb=0; cntb < list_obj.length; cntb++){
                 obj_prop[cnta][cntb] = 0;
             }
         }
-    }*/
+    }
     alert("ここまでは動いてる");
     var say = new Array;    //メッセージの送受信を記録に残す用
 
