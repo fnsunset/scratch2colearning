@@ -1,4 +1,5 @@
 (function(ext) {
+    alert("死んでる");
     var socket = io.connect('http://192.168.2.104:8080');
     alert("繋げようとはした");
     var socket_id = '';
