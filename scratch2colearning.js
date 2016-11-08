@@ -6,7 +6,7 @@
     var obj_prop = [[],[]];//obj_propは[a]さんの[b]のobj
     for (var cnta=0; cnta < list_mem.length*list_obj.length; cnta++){
         for(var cntb=0; cntb < list_obj.length; cntb++){
-                obj_prop[cnta][cntb] = [0,1,2];
+                obj_prop[cnta][cntb] = 0;
             }
         }
     }
