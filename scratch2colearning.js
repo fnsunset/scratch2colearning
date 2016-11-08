@@ -3,14 +3,14 @@
     var socket_id = '';
     var list_mem = ['A','B','C','D'];
     var list_obj = ['ねこ','モモンガ','カエル'];
-    //var obj_prop = [[[],[]],[[],[]]];//obj_propは[a]さんの[b]のobjについて[c]で定義する
-    //for (var cnta=0; cnta < list_mem.length; cnta++){
-    //    for(var cntb=0; cntb < list_obj.length; cntb++){
-    //        for(var cntc=0; cntc < list_obj.length+2; cntc++){//x座標とy座標と当たり判定について記録
-    //            obj_prop[cnta][cntb][cntc] = 0;
-    //        }
-    //    }
-    //}
+    var obj_prop = [[[],[]],[[],[]]];//obj_propは[a]さんの[b]のobjについて[c]で定義する
+    for (var cnta=0; cnta < list_mem.length; cnta++){
+        for(var cntb=0; cntb < list_obj.length; cntb++){
+            for(var cntc=0; cntc < list_obj.length+2; cntc++){//x座標とy座標と当たり判定について記録
+                obj_prop[cnta][cntb][cntc] = 0;
+            }
+        }
+    }
 
     var say = new Array;    //メッセージの送受信を記録に残す用
 
@@ -19,9 +19,7 @@
         socket_id = socket.id;
      });
     // shutdown時に呼ばれる
-    ext._shutdown = function() {
-        socket.emit('scratch/bye', { id: socket_id });
-    };
+    ext._shutdown = function() {};
 
     // statusを返してやる。デバイスとつながってない時とかここで色々返せる。
     ext._getStatus = function() {
