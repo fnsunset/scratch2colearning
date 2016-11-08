@@ -7,7 +7,7 @@
     var list_obj = ['ねこ','モモンガ','カエル'];
     alert("配列ができてない");
     var obj_prop = [[],[]];//obj_propは[a]さんの[b]のobj
-    alert("定義はできてる");
+    obj_prop[0][0] = 0;
     var say = new Array;    //メッセージの送受信を記録に残す用
 
     //接続が確立したら自分のIDを取得する
