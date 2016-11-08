@@ -1,5 +1,5 @@
 (function(ext) {
-    alert("4.5");
+    alert("5");
     var socket = io.connect('http://192.168.2.104:8080');
     var socket_id = '';
     var list_mem = ['A','B','C','D'];
@@ -7,12 +7,6 @@
     var obj_prop = new Array();//obj_propは[a]さんの[b]のobj
     var allobj = list_mem.length * list_obj.length;
     alert("配列の長さは"+list_mem.length+"と"+list_obj.length);
-    /*for(var cnta=0; cnta < allobj; cnta++){
-        obj_prop[cnta] = new Array();
-        for(var cntb=0; cntb < list_obj.length; cntb++){
-            obj_prop[cnta][cntb] = 0;
-        }
-    }*/
     for(var cnta = 0; cnta < list_mem.length; cnta++){
         obj_prop[cnta] = new Array();
         for(var cntb = 0; cntb < list_obj.length; cntb++){
@@ -77,13 +71,13 @@
         socket.emit('scratch/warp', { obj: $.inArray(str, list_obj), warpx: num1, warpy: num2, id: socket_id });
     };
     ext.Obj_getx = function(str1,str2) {
-        socket.emit('scratch/getx', { x: 1, y: 1 });
+        return(obj_prop[str1.value][str2.value][list_obj.length-2]);
     };
     ext.Obj_gety = function(str1,str2) {
-        socket.emit('scratch/gety', { x: 1, y: 1 });
+        return(obj_prop[str1.value][str2.value][list_obj.length-1]);
     };
     ext.Obj_res = function(str) {
-        socket.emit('scratch/res', { x: 1, y: 1 });
+        return(true);
     };
     ext.Obj_send = function(str) {
         socket.emit('scratch/send', { mes: str, id: socket_id });
