@@ -96,7 +96,7 @@
             ['r', '%m.List_member さんの %m.List_obj のx座標', 'Obj_getx', 'A', 'ねこ'],
             ['r', '%m.List_member さんの %m.List_obj のy座標', 'Obj_gety', 'A', 'ねこ'],
             ['h', '%s を受け取ったとき','Obj_res','Hello'],
-            [' ','%s を送る','Obj_move','Hello']
+            [' ','%s を送る','Obj_send','Hello']
         ],
         menus:{
             List_member: list_mem,
