@@ -3,45 +3,67 @@
     var socket_id = '';
     var list_mem = ['A','B','C','D'];
     var list_obj = ['ねこ','モモンガ','カエル'];
+    var obj_prop = [[[],[]],[[],[]]];//obj_propは[a]さんの[b]のobjについて[c]で定義する
+    for (var cnta=0; cnta < list_mem.length; cnta++){
+        for(var cntb=0; cntb < list_obj.length; cntb++){
+            for(var cntc=0; cntc < list_obj.length+2; cntc++){//x座標とy座標と当たり判定について記録
+                obj_prop[cnta][cntb][cntc] = 0;
+            }
+        }
+    }
+
+    var say = new Array;    //メッセージの送受信を記録に残す用
+
+    //接続が確立したら自分のIDを取得する
     socket.on('connect', function() { 
         socket_id = socket.id;
      });
     // shutdown時に呼ばれる
-    ext._shutdown = function() {};
+    ext._shutdown = function() {
+        socket.emit('scratch/bye', { id: socket_id });
+    };
 
     // statusを返してやる。デバイスとつながってない時とかここで色々返せる。
     ext._getStatus = function() {
         return {status: 2, msg: 'Ready'};
     };
-    //サーバ側から受信した情報を反映させる
+
+    //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//
+    //\\メッセージを受信したときに起こすアクションをここに記述//\\
+    //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//
+
+    //サーバ側から接続完了後のメッセージを受け取ったらIDを返す
     socket.on('server/hello', function (data) {
         socket.emit('scratch/hello', { id: socket_id });
 	});
+
+    //ここまで
+
     // blockが呼び出された時に呼ばれる関数を登録する。
     // 下にあるdescriptorでブロックと関数のひも付けを行っている。
     ext.Obj_connect = function(str) {
         //接続は起動時にやってるので必要ないのでは？
     };
     ext.Obj_move = function(str,num) {
-        socket.emit('scratch/move', { obj: str, move: num, id: socket_id });
+        socket.emit('scratch/move', { obj: $.inArray(str, list_obj), move: num, id: socket_id });
     };
     ext.Obj_cw = function(str,num) {
-        socket.emit('scratch/rotate', { obj: str, rotate: num, id: socket_id });
+        socket.emit('scratch/rotate', { obj: $.inArray(str, list_obj), rotate: num, id: socket_id });
     };
     ext.Obj_rcw = function(str,num) {
-        socket.emit('scratch/rotate', { obj: str, rotate: num * -1, id: socket_id });
+        socket.emit('scratch/rotate', { obj: $.inArray(str, list_obj), rotate: num * -1, id: socket_id });
     };
     ext.Obj_ang = function(str,num) {
-        socket.emit('scratch/ang', { obj: str, angle: num, id: socket_id });
+        socket.emit('scratch/ang', { obj: $.inArray(str, list_obj), angle: num, id: socket_id });
     };
     ext.Obj_movex = function(str,num) {
-        socket.emit('scratch/movex', { obj: str, movex: num, id: socket_id });
+        socket.emit('scratch/movex', { obj: $.inArray(str, list_obj), movex: num, id: socket_id });
     };
     ext.Obj_movey = function(str,num) {
-        socket.emit('scratch/movey', { obj: str, movey: num, id: socket_id });
+        socket.emit('scratch/movey', { obj: $.inArray(str, list_obj), movey: num, id: socket_id });
     };
     ext.Obj_movey = function(str,num1,num2) {
-        socket.emit('scratch/warp', { obj: str, warpx: num1, warpy: num2, id: socket_id });
+        socket.emit('scratch/warp', { obj: $.inArray(str, list_obj), warpx: num1, warpy: num2, id: socket_id });
     };
     ext.Obj_getx = function(str1,str2) {
         socket.emit('scratch/getx', { x: 1, y: 1 });
