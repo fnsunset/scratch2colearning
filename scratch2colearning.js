@@ -1,5 +1,5 @@
 (function(ext) {
-    alert("6");
+    alert("7");
     var socket = io.connect('http://192.168.2.104:8080');
     var socket_id = '';
     var list_mem = ['A','B','C','D'];
@@ -77,7 +77,7 @@
     ext.Obj_movey = function(str,num) {
         socket.emit('scratch/movey', { obj: $.inArray(str, list_obj), movey: num, id: socket_id });
     };
-    ext.Obj_movey = function(str,num1,num2) {
+    ext.Obj_warp = function(str,num1,num2) {
         socket.emit('scratch/warp', { obj: $.inArray(str, list_obj), warpx: num1, warpy: num2, id: socket_id });
     };
     ext.Obj_getx = function(str1,str2) {
