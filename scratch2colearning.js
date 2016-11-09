@@ -41,6 +41,16 @@
     socket.on('server/hello', function (data) {
         socket.emit('scratch/hello', { id: socket_id });
 	});
+    socket.on('server/send', function (data) {
+        say.unshift(data.mes);
+	});
+    socket.on('server/objupdate', function (data) {
+       obj_prop[data.no][data.obj][list_obj.length-2] = data.objx;
+       obj_prop[data.no][data.obj][list_obj.length-1] = data.objy;
+    });
+    socket.on('server/objhit', function (data) {
+       obj_prop[data.no][data.obj][data.myobj] = data.hit;
+    });
 
     //ここまで
 
@@ -77,7 +87,13 @@
         return(obj_prop[str1.value][str2.value][list_obj.length-1]);
     };
     ext.Obj_res = function(str) {
-        return(true);
+        var sayid = $.inArray(str, say);
+        if(sayid + 1){
+            say.splice(sayid, 1);
+            return(true);
+        }else{
+            return(false);
+        }
     };
     ext.Obj_send = function(str) {
         socket.emit('scratch/send', { mes: str, id: socket_id });
