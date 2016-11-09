@@ -1,5 +1,5 @@
 (function(ext) {
-    alert("5");
+    alert("6");
     var socket = io.connect('http://192.168.2.104:8080');
     var socket_id = '';
     var list_mem = ['A','B','C','D'];
@@ -56,8 +56,8 @@
 
     // blockが呼び出された時に呼ばれる関数を登録する。
     // 下にあるdescriptorでブロックと関数のひも付けを行っている。
-    ext.Obj_connect = function(str) {
-        //接続は起動時にやってるので必要ないのでは？
+    ext.Obj_getid = function() {
+        return(socket_id);
     };
     ext.Obj_move = function(str,num) {
         socket.emit('scratch/move', { obj: $.inArray(str, list_obj), move: num, id: socket_id });
@@ -81,10 +81,17 @@
         socket.emit('scratch/warp', { obj: $.inArray(str, list_obj), warpx: num1, warpy: num2, id: socket_id });
     };
     ext.Obj_getx = function(str1,str2) {
-        return(obj_prop[str1.value][str2.value][list_obj.length-2]);
+        return(obj_prop[$.inArray(str1, list_obj)][$.inArray(str2, list_obj)][list_obj.length-2]);
     };
     ext.Obj_gety = function(str1,str2) {
-        return(obj_prop[str1.value][str2.value][list_obj.length-1]);
+        return(obj_prop[$.inArray(str1, list_obj)][$.inArray(str2, list_obj)][list_obj.length-1]);
+    };
+    ext.Obj_gety = function(str1,str2,str3) {
+        if(obj_prop[$.inArray(str1, list_obj)][$.inArray(str2, list_obj)][$.inArray(str3, list_obj)] != 0){
+            return(true);
+        }else{
+            return(false);
+        }
     };
     ext.Obj_res = function(str) {
         var sayid = $.inArray(str, say);
@@ -101,7 +108,7 @@
     // ブロックと関数のひも付け
     var descriptor = {
         blocks: [
-            [' ', '%s に接続する', 'Obj_connect', '192.168.2.104:8080'],
+            ['r', 'Socket ID', 'Obj_getid'],
             [' ', '%m.List_obj を %n 歩動かす', 'Obj_move', 'ねこ',10],
             [' ', '%m.List_obj を時計回りに %n 度回す', 'Obj_cw', 'ねこ', 15],
             [' ', '%m.List_obj を反時計回りに %n 度回す', 'Obj_rcw', 'ねこ', 15],
@@ -111,6 +118,7 @@
             [' ', '%m.List_obj のx座標を %n y座標を %n にする', 'Obj_warp', 'ねこ', 0, 0],
             ['r', '%m.List_member さんの %m.List_obj のx座標', 'Obj_getx', 'A', 'ねこ'],
             ['r', '%m.List_member さんの %m.List_obj のy座標', 'Obj_gety', 'A', 'ねこ'],
+            ['b', '%m.List_member さんの %m.List_obj と自分の %m.List_obj が触れた', 'Obj_hit', 'A', 'ねこ', 'ねこ'],
             ['h', '%s を受け取ったとき','Obj_res','Hello'],
             [' ','%s を送る','Obj_send','Hello']
         ],
