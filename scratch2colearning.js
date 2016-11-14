@@ -4,20 +4,19 @@
     var socket_id = '';
     var list_mem = ['A','B','C','D'];
     var list_obj = ['ねこ','モモンガ','カエル'];
-    var obj_prop = new Array();//obj_propは[a]さんの[b]のobj
+    var obj_prop = [];//obj_propは[a]さんの[b]のobj
     var allobj = list_mem.length * list_obj.length;
-    alert("配列の長さは"+list_mem.length+"と"+list_obj.length);
     for(var cnta = 0; cnta < list_mem.length; cnta++){
-        obj_prop[cnta] = new Array();
+        obj_prop[cnta] = [];
         for(var cntb = 0; cntb < list_obj.length; cntb++){
-            obj_prop[cnta][cntb] = new Array();
+            obj_prop[cnta][cntb] = [];
             for(var cntc = 0; cntc < list_obj.length + 2; cntc++){
                 obj_prop[cnta][cntb][cntc] = 0;
             }
         }
     }
 
-    var say = new Array;    //メッセージの送受信を記録に残す用
+    var say = [];    //メッセージの送受信を記録に残す用
 
     //接続が確立したら自分のIDを取得する
     socket.on('connect', function() { 
