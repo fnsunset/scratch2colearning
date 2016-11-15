@@ -55,6 +55,7 @@
     });
     socket.on('server/tellid', function (data) {
        member_id = data.idnumber;
+       alert(member_id);
     });
     //ここまで
 
