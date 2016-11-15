@@ -1,8 +1,7 @@
 (function(ext) {
-    alert("Start-up Success!");
+    alert("7");
     var socket = io.connect('http://192.168.2.104:8080');
     var socket_id = '';
-    var id_num = '';
     var list_mem = ['A','B','C','D'];
     var list_obj = ['ねこ','モモンガ','カエル'];
     var obj_prop = [];//obj_propは[a]さんの[b]のobj
@@ -51,15 +50,12 @@
     socket.on('server/objhit', function (data) {
        obj_prop[data.no][data.obj][data.myobj] = data.hit;
     });
-    socket.on('server/tellid', function (data) {
-       id_num = idnumber;
-    });
     //ここまで
 
     // blockが呼び出された時に呼ばれる関数を登録する。
     // 下にあるdescriptorでブロックと関数のひも付けを行っている。
     ext.Obj_getid = function() {
-        return(id_num);
+        return(socket_id);
     };
     ext.Obj_move = function(str,num) {
         socket.emit('scratch/move', { obj: $.inArray(str, list_obj), move: num, id: socket_id });
