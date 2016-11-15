@@ -1,5 +1,5 @@
 (function(ext) {
-    alert("7");
+    alert("Connect!");
     var socket = io.connect('http://192.168.2.104:8080');
     var socket_id = '';
     var member_id = '';
@@ -55,7 +55,6 @@
     });
     socket.on('server/tellid', function (data) {
        member_id = data.idnumber;
-       alert(member_id);
     });
     //ここまで
 
