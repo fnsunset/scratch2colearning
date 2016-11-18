@@ -42,7 +42,7 @@
         socket.emit('scratch/hello', { id: socket_id });
 	});
     socket.on('server/send', function (data) {
-        if($.inArray(data.mes, say)>=0){
+        if($.inArray(data.mes, say)==-1){
             say.unshift(data.mes);
         }
 	});
@@ -67,10 +67,10 @@
         socket.emit('scratch/move', { obj: $.inArray(str, list_obj), move: num, id: socket_id });
     };
     ext.Obj_cw = function(str,num) {
-        socket.emit('scratch/rotate', { obj: $.inArray(str, list_obj), rotate: num, id: socket_id });
+        socket.emit('scratch/rotate', { obj: $.inArray(str, list_obj), rotate: num * -1, id: socket_id });
     };
     ext.Obj_rcw = function(str,num) {
-        socket.emit('scratch/rotate', { obj: $.inArray(str, list_obj), rotate: num * -1, id: socket_id });
+        socket.emit('scratch/rotate', { obj: $.inArray(str, list_obj), rotate: num , id: socket_id });
     };
     ext.Obj_ang = function(str,num) {
         socket.emit('scratch/ang', { obj: $.inArray(str, list_obj), angle: num, id: socket_id });
