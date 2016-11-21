@@ -1,5 +1,5 @@
 (function(ext) {
-    alert("Connect!");
+    alert("Connect! Ver 11.21.01");
     var socket = io.connect('http://192.168.2.104:8080');
     var socket_id = '';
     var member_id = '';
@@ -18,6 +18,7 @@
     }
 
     var say = [];    //メッセージの送受信を記録に残す用
+    var say_log = false;    //寸前にtrueになってたら一旦falseにするためのスイッチ
 
     //接続が確立したら自分のIDを取得する
     socket.on('connect', function() { 
@@ -99,10 +100,12 @@
     };
     ext.Obj_res = function(str) {
         var sayid = $.inArray(str, say);
-        if(sayid + 1){
+        if(sayid + 1 && say_log){
             say.splice(sayid, 1);
+            say_log = false;
             return(true);
         }else{
+            say_log = true;
             return(false);
         }
     };
