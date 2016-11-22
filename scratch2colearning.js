@@ -1,5 +1,5 @@
 (function(ext) {
-    alert("Connect! Ver 11.22.02");
+    alert("Connect! Ver 11.22.03");
     var socket = io.connect('http://192.168.2.104:8080');
     var socket_id = '';
     var member_id = '';
