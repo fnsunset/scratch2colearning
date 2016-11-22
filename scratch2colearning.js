@@ -1,5 +1,5 @@
 (function(ext) {
-    alert("Connect! Ver 11.21.01");
+    alert("Connect! Ver 11.22.01");
     var socket = io.connect('http://192.168.2.104:8080');
     var socket_id = '';
     var member_id = '';
@@ -83,7 +83,7 @@
         socket.emit('scratch/movey', { obj: $.inArray(str, list_obj), movey: num, id: socket_id });
     };
     ext.Obj_warp = function(str,num1,num2) {
-        socket.emit('scratch/warp', { obj: $.inArray(str, list_obj), warpx: num1, warpy: num2, id: socket_id });
+        socket.emit('scratch/warp', { obj: $.inArray(str, list_obj), warpx: 0, warpy: 0, id: socket_id });
     };
     ext.Obj_getx = function(str1,str2) {
         return(obj_prop[$.inArray(str1, list_obj)][$.inArray(str2, list_obj)][list_obj.length-2]);
@@ -122,7 +122,9 @@
             [' ', '%m.List_obj を %n 度に向ける', 'Obj_ang', 'ねこ', 10],
             [' ', '%m.List_obj のx座標を %n ずつ変える', 'Obj_movex', 'ねこ', 10],
             [' ', '%m.List_obj のｙ座標を %n ずつ変える', 'Obj_movey', 'ねこ', 10],
-            [' ', '%m.List_obj のx座標を %n y座標を %n にする', 'Obj_warp', 'ねこ', 0, 0],
+            [' ', '%m.List_obj を 表示する', 'Obj_appear', 'ねこ'],
+            [' ', '%m.List_obj を 隠す', 'Obj_hide', 'ねこ'],
+            [' ', '%m.List_obj を真ん中に動かす', 'Obj_warp', 'ねこ'],
             ['r', '%m.List_member さんの %m.List_obj のx座標', 'Obj_getx', 'A', 'ねこ'],
             ['r', '%m.List_member さんの %m.List_obj のy座標', 'Obj_gety', 'A', 'ねこ'],
             ['b', '%m.List_member さんの %m.List_obj と自分の %m.List_obj が触れた', 'Obj_hit', 'A', 'ねこ', 'ねこ'],
