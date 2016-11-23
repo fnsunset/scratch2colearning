@@ -1,5 +1,5 @@
 (function(ext) {
-    alert("Connect! Ver 11.22.04");
+    alert("Connect! Ver 11.23.01");
     var socket = io.connect('http://192.168.2.104:8080');
     var socket_id = '';
     var member_id = 0;
@@ -48,28 +48,51 @@
             say.unshift(data.mes);
         }
 	});
+    socket.on('server/memupdate', function (data) {
+        if(member_id == data.Number){
+            group_id = data.Group;
+        }
+	});
     socket.on('server/objupdate', function (data) {
-       obj_prop[data.no][data.obj][list_obj.length-2] = data.objx;
-       obj_prop[data.no][data.obj][list_obj.length-1] = data.objy;
-    });
-    socket.on('server/objhit', function (data) {
-       obj_prop[data.no][data.obj][data.myobj] = data.hit;
+        if (data.group == group_id ){
+        obj_prop[data.no][data.obj][list_obj.length-2] = data.objx;
+        obj_prop[data.no][data.obj][list_obj.length-1] = data.objy;
+        }
     });
     socket.on('server/tellid', function (data) {
-       member_id = data.idnumber;
+        member_id = data.idnumber;
     });
     socket.on('server/colision_on', function (data) {
-       
+        if (data.group == group_id ){
+            if(data.mem1 == member_id){
+                obj_prop[data.mem2][data.obj2][data.obj1] = 1;
+            }
+            if(data.mem2 == member_id){
+                obj_prop[data.mem1][data.obj1][data.obj2] = 1; 
+            }
+        }
     });
     socket.on('server/colision_off', function (data) {
-       
+       if (data.group == group_id ){
+            if(data.mem1 == member_id){
+                obj_prop[data.mem2][data.obj2][data.obj1] = 0;
+            }
+            if(data.mem2 == member_id){
+                obj_prop[data.mem1][data.obj1][data.obj2] = 0; 
+            }
+       }
+    });
+    socket.on('server/obj_pos', function (data) {
+       if (data.group == group_id ){
+            obj_prop[data.mem2][data.obj2][] = 0;
+       }
     });
     //ここまで
 
     // blockが呼び出された時に呼ばれる関数を登録する。
     // 下にあるdescriptorでブロックと関数のひも付けを行っている。
     ext.Obj_getid = function() {
-        return(member_id);
+        return('M:'+member_id+' G:'+group_id);
     };
     ext.Obj_move = function(str,num) {
         socket.emit('scratch/move', { obj: $.inArray(str, list_obj), move: num, id: socket_id });
