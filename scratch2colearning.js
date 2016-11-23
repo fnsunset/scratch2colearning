@@ -5,7 +5,7 @@
     var member_id = 0;
     var group_id = 0;
     var list_mem = ['A','B','C','D'];
-    var list_obj = ['ねこ','モモンガ','カエル'];
+    var list_obj = ['モモンガ','ボール','ゆきだるま'];
     var obj_prop = [];//obj_propは[a]さんの[b]のobj
     var allobj = list_mem.length * list_obj.length;
     for(var cnta = 0; cnta < list_mem.length; cnta++){
