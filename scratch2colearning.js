@@ -1,5 +1,5 @@
 (function(ext) {
-    alert("Connect! Ver 11.23.01");
+    alert("Connect! Ver 11.23.02");
     var socket = io.connect('http://192.168.2.104:8080');
     var socket_id = '';
     var member_id = 0;
@@ -122,7 +122,7 @@
     ext.Obj_gety = function(str1,str2) {
         return(obj_prop[$.inArray(str1, list_obj)][$.inArray(str2, list_obj)][list_obj.length-1]);
     };
-    ext.Obj_gety = function(str1,str2,str3) {
+    ext.Obj_hit = function(str1,str2,str3) {
         if(obj_prop[$.inArray(str1, list_obj)][$.inArray(str2, list_obj)][$.inArray(str3, list_obj)] != 0){
             return(true);
         }else{
