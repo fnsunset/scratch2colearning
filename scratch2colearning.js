@@ -1,8 +1,9 @@
 (function(ext) {
-    alert("Connect! Ver 11.22.03");
+    alert("Connect! Ver 11.22.04");
     var socket = io.connect('http://192.168.2.104:8080');
     var socket_id = '';
-    var member_id = '';
+    var member_id = 0;
+    var group_id = 0;
     var list_mem = ['A','B','C','D'];
     var list_obj = ['ねこ','モモンガ','カエル'];
     var obj_prop = [];//obj_propは[a]さんの[b]のobj
@@ -56,6 +57,12 @@
     });
     socket.on('server/tellid', function (data) {
        member_id = data.idnumber;
+    });
+    socket.on('server/colision_on', function (data) {
+       
+    });
+    socket.on('server/colision_off', function (data) {
+       
     });
     //ここまで
 
@@ -123,17 +130,17 @@
         blocks: [
             ['r', 'Socket ID', 'Obj_getid'],
             [' ', '%m.List_obj を %n 歩動かす', 'Obj_move', list_obj[0],10],
-            [' ', '%m.List_obj を時計回りに %n 度回す', 'Obj_cw', 'ねこ', 15],
-            [' ', '%m.List_obj を反時計回りに %n 度回す', 'Obj_rcw', 'ねこ', 15],
-            [' ', '%m.List_obj を %n 度に向ける', 'Obj_ang', 'ねこ', 10],
-            [' ', '%m.List_obj のx座標を %n ずつ変える', 'Obj_movex', 'ねこ', 10],
-            [' ', '%m.List_obj のｙ座標を %n ずつ変える', 'Obj_movey', 'ねこ', 10],
-            [' ', '%m.List_obj を真ん中に動かす', 'Obj_warp', 'ねこ'],
-            [' ', '%m.List_obj を 表示する', 'Obj_appear', 'ねこ'],
-            [' ', '%m.List_obj を 隠す', 'Obj_hide', 'ねこ'],
-            ['r', '%m.List_member さんの %m.List_obj のx座標', 'Obj_getx', 'A', 'ねこ'],
-            ['r', '%m.List_member さんの %m.List_obj のy座標', 'Obj_gety', 'A', 'ねこ'],
-            ['b', '%m.List_member さんの %m.List_obj と自分の %m.List_obj が触れた', 'Obj_hit', 'A', 'ねこ', 'ねこ'],
+            [' ', '%m.List_obj を時計回りに %n 度回す', 'Obj_cw', list_obj[0], 15],
+            [' ', '%m.List_obj を反時計回りに %n 度回す', 'Obj_rcw', list_obj[0], 15],
+            [' ', '%m.List_obj を %n 度に向ける', 'Obj_ang', list_obj[0], 10],
+            [' ', '%m.List_obj のx座標を %n ずつ変える', 'Obj_movex', list_obj[0], 10],
+            [' ', '%m.List_obj のｙ座標を %n ずつ変える', 'Obj_movey', list_obj[0], 10],
+            [' ', '%m.List_obj を真ん中に動かす', 'Obj_warp', list_obj[0]],
+            [' ', '%m.List_obj を 表示する', 'Obj_appear', list_obj[0]],
+            [' ', '%m.List_obj を 隠す', 'Obj_hide', list_obj[0]],
+            ['r', '%m.List_member さんの %m.List_obj のx座標', 'Obj_getx', list_mem[0], list_obj[0]],
+            ['r', '%m.List_member さんの %m.List_obj のy座標', 'Obj_gety', list_mem[0], list_obj[0]],
+            ['b', '%m.List_member さんの %m.List_obj と自分の %m.List_obj が触れた', 'Obj_hit', list_mem[0], list_obj[0], list_obj[0]],
             ['h', '%s を受け取ったとき','Obj_res','Hello'],
             [' ','%s を送る','Obj_send','Hello']
         ],
