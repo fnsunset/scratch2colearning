@@ -82,11 +82,6 @@
             }
        }
     });
-    socket.on('server/obj_pos', function (data) {
-       if (data.group == group_id ){
-            obj_prop[data.mem2][data.obj2][] = 0;
-       }
-    });
     //ここまで
 
     // blockが呼び出された時に呼ばれる関数を登録する。
