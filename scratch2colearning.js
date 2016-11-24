@@ -1,6 +1,6 @@
 (function(ext) {
-    alert("Connect! Ver 11.24.02");
-    var socket = io.connect('http://192.168.2.104:8080');
+    alert("Connect! Ver 11.24.03");
+    var socket = io.connect();
     var socket_id = '';
     var member_id = 0;
     var group_id = 0;
@@ -88,6 +88,14 @@
 
     // blockが呼び出された時に呼ばれる関数を登録する。
     // 下にあるdescriptorでブロックと関数のひも付けを行っている。
+    ext.Connect = function(str){
+        var address = str + ':8080';
+        if(!socket.connected){
+        socket = io.connect(address);
+        }else{
+            socket = io.connect();
+        }
+    };
     ext.Obj_getid = function() {
         return('M:'+member_id+' G:'+group_id+' N:'+number_id);
     };
@@ -152,6 +160,7 @@
     // ブロックと関数のひも付け
     var descriptor = {
         blocks: [
+            [' ', 'Connect %s', 'Connect','192.168.2.104'],
             ['r', 'Socket ID', 'Obj_getid'],
             [' ', '%m.List_obj を %n 歩動かす', 'Obj_move', list_obj[0],10],
             [' ', '%m.List_obj を時計回りに %n 度回す', 'Obj_cw', list_obj[0], 15],
