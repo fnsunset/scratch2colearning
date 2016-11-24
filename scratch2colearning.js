@@ -163,6 +163,9 @@
     ext.Obj_send = function(str) {
         socket.emit('scratch/send', { mes: str, id: socket_id });
     };
+    ext.Obj_emit = function(){
+        
+    };
     // ブロックと関数のひも付け
     var descriptor = {
         blocks: [

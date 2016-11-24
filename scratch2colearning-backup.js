@@ -1,6 +1,6 @@
 (function(ext) {
-    alert("Connect! Ver 11.24.02");
-    var socket = io.connect('http://192.168.2.104:8080');
+    alert("Connect! Ver 11.24.05");
+    var socket = { on: function(){} };
     var socket_id = '';
     var member_id = 0;
     var group_id = 0;
@@ -21,11 +21,61 @@
 
     var say = [];    //メッセージの送受信を記録に残す用
     var say_log = false;    //寸前にtrueになってたら一旦falseにするためのスイッチ
-
-    //接続が確立したら自分のIDを取得する
-    socket.on('connect', function() { 
-        socket_id = socket.id;
-     });
+    var connect_server = function(str){
+        if(!socket.connected){
+        socket = io.connect('http://'+str+':8080');
+        }else{
+            socket = io.connect();
+        }
+        socket.on('server/hello', function (data) {
+            socket.emit('scratch/hello', { id: socket_id });
+        });
+        socket.on('server/send', function (data) {
+            if($.inArray(data.mes, say)==-1){
+                say.unshift(data.mes);
+            }
+        });
+        socket.on('server/memupdate', function (data) {
+            if(member_id == data.Number){
+                group_id = data.Group;
+                number_id = data.Number;
+            }
+        });
+        socket.on('server/objupdate', function (data) {
+            if (data.group == group_id ){
+            obj_prop[data.no][data.obj][list_obj.length-2] = data.objx;
+            obj_prop[data.no][data.obj][list_obj.length-1] = data.objy;
+            }
+        });
+        socket.on('server/tellid', function (data) {
+            member_id = data.idnumber;
+        });
+        socket.on('server/colision_on', function (data) {
+            if (data.group == group_id ){
+                if(data.mem1 == member_id){
+                    obj_prop[data.mem2][data.obj2][data.obj1] = 1;
+                }
+                if(data.mem2 == member_id){
+                    obj_prop[data.mem1][data.obj1][data.obj2] = 1; 
+                }
+            }
+        });
+        socket.on('server/colision_off', function (data) {
+        if (data.group == group_id ){
+                if(data.mem1 == member_id){
+                    obj_prop[data.mem2][data.obj2][data.obj1] = 0;
+                }
+                if(data.mem2 == member_id){
+                    obj_prop[data.mem1][data.obj1][data.obj2] = 0; 
+                }
+        }
+        });
+        //接続が確立したら自分のIDを取得する
+        socket.on('connect', function() { 
+            socket_id = socket.id;
+        });
+    }
+    
     // shutdown時に呼ばれる
     ext._shutdown = function() {
         socket.emit('scratch/bye', { id: socket_id });
@@ -41,55 +91,16 @@
     //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 
     //サーバ側から接続完了後のメッセージを受け取ったらIDを返す
-    socket.on('server/hello', function (data) {
-        socket.emit('scratch/hello', { id: socket_id });
-	});
-    socket.on('server/send', function (data) {
-        if($.inArray(data.mes, say)==-1){
-            say.unshift(data.mes);
-        }
-	});
-    socket.on('server/memupdate', function (data) {
-        if(member_id == data.Number){
-            group_id = data.Group;
-            number_id = data.Number;
-        }
-	});
-    socket.on('server/objupdate', function (data) {
-        if (data.group == group_id ){
-        obj_prop[data.no][data.obj][list_obj.length-2] = data.objx;
-        obj_prop[data.no][data.obj][list_obj.length-1] = data.objy;
-        }
-    });
-    socket.on('server/tellid', function (data) {
-        member_id = data.idnumber;
-    });
-    socket.on('server/colision_on', function (data) {
-        if (data.group == group_id ){
-            if(data.mem1 == member_id){
-                obj_prop[data.mem2][data.obj2][data.obj1] = 1;
-            }
-            if(data.mem2 == member_id){
-                obj_prop[data.mem1][data.obj1][data.obj2] = 1; 
-            }
-        }
-    });
-    socket.on('server/colision_off', function (data) {
-       if (data.group == group_id ){
-            if(data.mem1 == member_id){
-                obj_prop[data.mem2][data.obj2][data.obj1] = 0;
-            }
-            if(data.mem2 == member_id){
-                obj_prop[data.mem1][data.obj1][data.obj2] = 0; 
-            }
-       }
-    });
+
     //ここまで
 
     // blockが呼び出された時に呼ばれる関数を登録する。
     // 下にあるdescriptorでブロックと関数のひも付けを行っている。
+    ext.Connect = function (str) {
+        connect_server(str);
+    };
     ext.Obj_getid = function() {
-        return('M:'+member_id+' G:'+group_id+' N:'+number_id);
+        return(member_id+'/'+group_id+' あなたは'+list_mem[number_id]+'さん');
     };
     ext.Obj_move = function(str,num) {
         socket.emit('scratch/move', { obj: $.inArray(str, list_obj), move: num, id: socket_id });
@@ -114,7 +125,10 @@
         socket.emit('scratch/movey', { obj: $.inArray(str, list_obj), movey: num, id: socket_id });
     };
     ext.Obj_warp = function(str,num1,num2) {
-        socket.emit('scratch/warp', { obj: $.inArray(str, list_obj), warpx: 0, warpy: 0, id: socket_id });
+        socket.emit('scratch/warp', { obj: $.inArray(str, list_obj), warpx: 0, warpy: 0, id: socket_id, center:1});
+    };
+    ext.Obj_warp2 = function(str1,str2,str3) {
+        socket.emit('scratch/warp', { obj: $.inArray(str1, list_obj), warpx: obj_prop[$.inArray(str2, list_mem)][$.inArray(str3, list_obj)][list_obj.length-2], warpy: obj_prop[$.inArray(str2, list_mem)][$.inArray(str3, list_obj)][list_obj.length-1], id: socket_id, center:1});
     };
     ext.Obj_hide = function(str) {
         socket.emit('scratch/hide', { obj: $.inArray(str, list_obj), id: socket_id });
@@ -152,6 +166,7 @@
     // ブロックと関数のひも付け
     var descriptor = {
         blocks: [
+            [' ', 'Connect %s', 'Connect','192.168.2.104'],
             ['r', 'Socket ID', 'Obj_getid'],
             [' ', '%m.List_obj を %n 歩動かす', 'Obj_move', list_obj[0],10],
             [' ', '%m.List_obj を時計回りに %n 度回す', 'Obj_cw', list_obj[0], 15],
@@ -161,6 +176,7 @@
             [' ', '%m.List_obj のx座標を %n ずつ変える', 'Obj_movex', list_obj[0], 10],
             [' ', '%m.List_obj のｙ座標を %n ずつ変える', 'Obj_movey', list_obj[0], 10],
             [' ', '%m.List_obj を真ん中に動かす', 'Obj_warp', list_obj[0]],
+            [' ', '%m.List_obj を %m.List_member さんの %m.List_obj に動かす', 'Obj_warp2', list_obj[0],list_mem[0],list_obj[0]],
             [' ', '%m.List_obj を 表示する', 'Obj_appear', list_obj[0]],
             [' ', '%m.List_obj を 隠す', 'Obj_hide', list_obj[0]],
             ['r', '%m.List_member さんの %m.List_obj のx座標', 'Obj_getx', list_mem[0], list_obj[0]],
