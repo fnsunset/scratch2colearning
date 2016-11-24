@@ -1,9 +1,10 @@
 (function(ext) {
-    alert("Connect! Ver 11.23.03");
+    alert("Connect! Ver 11.24.01");
     var socket = io.connect('http://192.168.2.104:8080');
     var socket_id = '';
     var member_id = 0;
     var group_id = 0;
+    var number_id = 0;
     var list_mem = ['A','B','C','D'];
     var list_obj = ['モモンガ','ボール','ゆきだるま'];
     var obj_prop = [];//obj_propは[a]さんの[b]のobj
@@ -51,6 +52,7 @@
     socket.on('server/memupdate', function (data) {
         if(member_id == data.Number){
             group_id = data.Group;
+            number_id = data.Number;
         }
 	});
     socket.on('server/objupdate', function (data) {
@@ -87,7 +89,7 @@
     // blockが呼び出された時に呼ばれる関数を登録する。
     // 下にあるdescriptorでブロックと関数のひも付けを行っている。
     ext.Obj_getid = function() {
-        return('M:'+member_id+' G:'+group_id);
+        return('M:'+member_id+' G:'+group_id+' N:'+number_id);
     };
     ext.Obj_move = function(str,num) {
         socket.emit('scratch/move', { obj: $.inArray(str, list_obj), move: num, id: socket_id });
@@ -100,6 +102,10 @@
     };
     ext.Obj_ang = function(str,num) {
         socket.emit('scratch/ang', { obj: $.inArray(str, list_obj), angle: num, id: socket_id });
+    };
+    ext.Obj_direct = function(str1,str2,str3) {
+        var num = Math.atan2(obj_prop[$.inArray(str2, list_mem)][$.inArray(str3, list_obj)][list_obj.length-1] - obj_prop[number_id][$.inArray(str1, list_obj)][list_obj.length-1], obj_prop[$.inArray(str2, list_mem)][$.inArray(str3, list_obj)][list_obj.length-2] - obj_prop[number_id][$.inArray(str1, list_obj)][list_obj.length-1]) * 180 / Math.PI;
+        socket.emit('scratch/ang', { obj: $.inArray(str1, list_obj), angle: num, id: socket_id });
     };
     ext.Obj_movex = function(str,num) {
         socket.emit('scratch/movex', { obj: $.inArray(str, list_obj), movex: num, id: socket_id });
@@ -151,6 +157,7 @@
             [' ', '%m.List_obj を時計回りに %n 度回す', 'Obj_cw', list_obj[0], 15],
             [' ', '%m.List_obj を反時計回りに %n 度回す', 'Obj_rcw', list_obj[0], 15],
             [' ', '%m.List_obj を %n 度に向ける', 'Obj_ang', list_obj[0], 10],
+            [' ', '自分の %m.List_obj を %m.List_member さんの %m.List_obj に向ける', 'Obj_direct', list_obj[0], list_mem[0], list_obj[0]]
             [' ', '%m.List_obj のx座標を %n ずつ変える', 'Obj_movex', list_obj[0], 10],
             [' ', '%m.List_obj のｙ座標を %n ずつ変える', 'Obj_movey', list_obj[0], 10],
             [' ', '%m.List_obj を真ん中に動かす', 'Obj_warp', list_obj[0]],
