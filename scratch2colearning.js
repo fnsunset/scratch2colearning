@@ -1,5 +1,5 @@
 (function(ext) {
-    alert("Connect! Ver 11.24.01");
+    alert("Connect! Ver 11.24.02");
     var socket = io.connect('http://192.168.2.104:8080');
     var socket_id = '';
     var member_id = 0;
@@ -157,7 +157,7 @@
             [' ', '%m.List_obj を時計回りに %n 度回す', 'Obj_cw', list_obj[0], 15],
             [' ', '%m.List_obj を反時計回りに %n 度回す', 'Obj_rcw', list_obj[0], 15],
             [' ', '%m.List_obj を %n 度に向ける', 'Obj_ang', list_obj[0], 10],
-            [' ', '自分の %m.List_obj を %m.List_member さんの %m.List_obj に向ける', 'Obj_direct', list_obj[0], list_mem[0], list_obj[0]]
+            [' ', '自分の %m.List_obj を %m.List_member さんの %m.List_obj に向ける', 'Obj_direct', list_obj[0], list_mem[0], list_obj[0]],
             [' ', '%m.List_obj のx座標を %n ずつ変える', 'Obj_movex', list_obj[0], 10],
             [' ', '%m.List_obj のｙ座標を %n ずつ変える', 'Obj_movey', list_obj[0], 10],
             [' ', '%m.List_obj を真ん中に動かす', 'Obj_warp', list_obj[0]],
