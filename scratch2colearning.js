@@ -1,5 +1,5 @@
 (function(ext) {
-    alert("Connect! Ver 11.24.04");
+    alert("Connect! Ver 11.24.05");
     var socket = { on: function(){} };
     var socket_id = '';
     var member_id = 0;
@@ -100,7 +100,7 @@
         connect_server(str);
     };
     ext.Obj_getid = function() {
-        return('M:'+member_id+' G:'+group_id+' N:'+number_id);
+        return(member_id+'/'+group_id+' あなたは'+list_mem[number_id]+'さん');
     };
     ext.Obj_move = function(str,num) {
         socket.emit('scratch/move', { obj: $.inArray(str, list_obj), move: num, id: socket_id });
