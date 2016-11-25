@@ -225,7 +225,7 @@
     };
     ext.Obj_movex = function(str,num,callback) {
         timer = 0;
-        var emit = {emit:'scratch/move', obj: $.inArray(str, list_obj), num1: num, num2: 0, id: socket_id, str: '', emitsw: 1};
+        var emit = {emit:'scratch/movexy', obj: $.inArray(str, list_obj), num1: num, num2: 0, id: socket_id, str: '', emitsw: 1};
         if(!checkJSONarray(emit,execution)){
             send_server.push(emit);
             execution.push(emit);
@@ -236,7 +236,7 @@
     };
     ext.Obj_movey = function(str,num,callback) {
         timer = 0;
-        var emit = {emit:'scratch/move', obj: $.inArray(str, list_obj), num1: 0, num2: num, id: socket_id, str: '', emitsw: 1};
+        var emit = {emit:'scratch/movexy', obj: $.inArray(str, list_obj), num1: 0, num2: num, id: socket_id, str: '', emitsw: 1};
         if(!checkJSONarray(emit,execution)){
             send_server.push(emit);
             execution.push(emit);
