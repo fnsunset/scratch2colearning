@@ -113,7 +113,7 @@
             if(!checkJSONarray(val,execution)){ //実行中命令リストから見つからなければ
                 execution.push(val);            //実行中命令に含める
                 console.log(val.emit + ' start');   //開始！
-            //socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 1});
+            socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 1});
             }
         });
         for(var cnta = 0; cnta < log_size-1; cnta++){
@@ -131,7 +131,7 @@
                     if(checkJSON(val,execution[cnt])){
                         execution.splice(cnt,1);
                         console.log(val.emit + ' stop');    //止めます！
-                        //socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 0});
+                        socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 0});
                         break;
                     }
                 }
@@ -140,7 +140,7 @@
         if(timer === log_size){
             console.log('実行する命令がありません');
             $.each(execution,function(i,val){
-                //socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 0});
+                socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 0});
                 console.log(val.emit + ' stop');
             });
             execution = [];
@@ -184,8 +184,6 @@
         if(!checkJSONarray(emit,send_server)){
             send_server.push(emit);
         }
-        
-        //socket.emit('scratch/move', { obj: $.inArray(str, list_obj), move: num, id: socket_id });
     };
     ext.Obj_cw = function(str,num) {
         timer = 0;
@@ -193,8 +191,6 @@
         if(!checkJSONarray(emit,send_server)){
             send_server.push(emit);
         }
-        
-        //socket.emit('scratch/rotate', { obj: $.inArray(str, list_obj), rotate: num * -1, id: socket_id });
     };
     ext.Obj_rcw = function(str,num) {
         timer = 0;
@@ -202,8 +198,6 @@
         if(!checkJSONarray(emit,send_server)){
             send_server.push(emit);
         }
-        
-        //socket.emit('scratch/rotate', { obj: $.inArray(str, list_obj), rotate: num , id: socket_id });
     };
     ext.Obj_ang = function(str,num) {
         timer = 0;
@@ -211,8 +205,6 @@
         if(!checkJSONarray(emit,send_server)){
             send_server.push(emit);
         }
-        
-        //socket.emit('scratch/ang', { obj: $.inArray(str, list_obj), angle: num, id: socket_id });
     };
     ext.Obj_direct = function(str1,str2,str3) {
         timer = 0;
@@ -221,8 +213,6 @@
         if(!checkJSONarray(emit,send_server)){
             send_server.push(emit);
         }
-        
-        //socket.emit('scratch/ang', { obj: $.inArray(str1, list_obj), angle: num, id: socket_id });
     };
     ext.Obj_movex = function(str,num) {
         timer = 0;
@@ -230,8 +220,6 @@
         if(!checkJSONarray(emit,send_server)){
             send_server.push(emit);
         }
-        
-        //socket.emit('scratch/movex', { obj: $.inArray(str, list_obj), movex: num, id: socket_id });
     };
     ext.Obj_movey = function(str,num) {
         timer = 0;
@@ -239,8 +227,6 @@
         if(!checkJSONarray(emit,send_server)){
             send_server.push(emit);
         }
-        
-        //socket.emit('scratch/movey', { obj: $.inArray(str, list_obj), movey: num, id: socket_id });
     };
     ext.Obj_center = function(str,num1,num2) {
         timer = 0;
@@ -248,8 +234,6 @@
         if(!checkJSONarray(emit,send_server)){
             send_server.push(emit);
         }
-        
-        //socket.emit('scratch/warp', { obj: $.inArray(str, list_obj), warpx: 0, warpy: 0, id: socket_id, center:1});
     };
     ext.Obj_warp = function(str1,str2,str3) {
         timer = 0;
@@ -257,8 +241,6 @@
         if(!checkJSONarray(emit,send_server)){
             send_server.push(emit);
         }
-        
-        //socket.emit('scratch/warp', { obj: $.inArray(str1, list_obj), warpx: obj_prop[$.inArray(str2, list_mem)][$.inArray(str3, list_obj)][list_obj.length-2], warpy: obj_prop[$.inArray(str2, list_mem)][$.inArray(str3, list_obj)][list_obj.length-1], id: socket_id, center:1});
     };
     ext.Obj_hide = function(str) {
         timer = 0;
@@ -266,8 +248,6 @@
         if(!checkJSONarray(emit,send_server)){
             send_server.push(emit);
         }
-        
-        //socket.emit('scratch/hide', { obj: $.inArray(str, list_obj), id: socket_id });
     };
     ext.Obj_appear = function(str) {
         timer = 0;
@@ -275,8 +255,6 @@
         if(!checkJSONarray(emit,send_server)){
             send_server.push(emit);
         }
-        
-        //socket.emit('scratch/appear', { obj: $.inArray(str, list_obj), id: socket_id });
     };
     ext.Obj_getx = function(str1,str2) {
         return(obj_prop[$.inArray(str1, list_mem)][$.inArray(str2, list_obj)][list_obj.length-2]);
@@ -308,8 +286,6 @@
         if(checkJSONarray(emit,send_server)){
             send_server.unshift(emit);
         }
-        
-        //socket.emit('scratch/send', { mes: str, id: socket_id });
     };
     ext.Obj_emit = function(){
         return(timer);
