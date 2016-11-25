@@ -145,6 +145,7 @@
                 }
             }
         }
+        console.log('false!');
         return false;
     }
     // shutdown時に呼ばれる
