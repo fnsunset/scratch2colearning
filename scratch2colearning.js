@@ -86,11 +86,13 @@
 
     var _timer = function(){
         $.each(send_server,function(i,val){
+            console.log('send_server');
             if(!checkJSONarray(val,send_log[4])){
                 //socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 1});
             }
         });
         $.each(send_log[0],function(i,val){
+            console.log('stop用');
             if(!checkJSONarray(val,send_log_old)){
                 console.log(JSON.stringify(send_log_old[0])+'\n'+ JSON.stringify(val));
                 //socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 0});
@@ -177,8 +179,10 @@
     ext.Obj_move = function(str,num,callback) {
         timer = 0;
         var emit = {emit:'scratch/move', obj: $.inArray(str, list_obj), num1: num, num2: 0, id: socket_id, str: '', emitsw: 1};
+        console.log('寸前で送信されていないか？');
         if(!checkJSONarray(emit,send_server)){
             send_server.push(emit);
+            console.log('現在送信中ではないか？');
             if(!checkJSONarray(emit,execution)){
                 execution.push(emit);
                 console.log(emit.emit + ' start');
