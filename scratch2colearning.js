@@ -81,7 +81,6 @@
 
     var _timer = function(){
         timer++;
-        console.log(JSON.stringify(send_server[0]));
         //if(socket_id){
             $.each(send_server,function(i,val){
                 if(!checkJSONarray(val,send_log)){
@@ -155,7 +154,7 @@
     ext.Obj_move = function(str,num) {
         timer = 0;
         var emit = {emit:'scratch/move', obj: $.inArray(str, list_obj), num1: num, num2: 0, id: socket_id, str: '', emitsw: 1};
-        console.log(emit.emit);
+        console.log(JSON.stringify(emit));
         if(checkJSONarray(emit,send_server)){
             send_server.push(emit);
         }
