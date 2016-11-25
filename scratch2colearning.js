@@ -104,37 +104,48 @@
         return(member_id+'/'+group_id+' あなたは'+list_mem[number_id]+'さん');
     };
     ext.Obj_move = function(str,num) {
+        timer = 0;
         socket.emit('scratch/move', { obj: $.inArray(str, list_obj), move: num, id: socket_id });
     };
     ext.Obj_cw = function(str,num) {
+        timer = 0;
         socket.emit('scratch/rotate', { obj: $.inArray(str, list_obj), rotate: num * -1, id: socket_id });
     };
     ext.Obj_rcw = function(str,num) {
+        timer = 0;
         socket.emit('scratch/rotate', { obj: $.inArray(str, list_obj), rotate: num , id: socket_id });
     };
     ext.Obj_ang = function(str,num) {
+        timer = 0;
         socket.emit('scratch/ang', { obj: $.inArray(str, list_obj), angle: num, id: socket_id });
     };
     ext.Obj_direct = function(str1,str2,str3) {
+        timer = 0;
         var num = Math.atan2(obj_prop[$.inArray(str2, list_mem)][$.inArray(str3, list_obj)][list_obj.length-1] - obj_prop[number_id][$.inArray(str1, list_obj)][list_obj.length-1], obj_prop[$.inArray(str2, list_mem)][$.inArray(str3, list_obj)][list_obj.length-2] - obj_prop[number_id][$.inArray(str1, list_obj)][list_obj.length-1]) * 180 / Math.PI;
         socket.emit('scratch/ang', { obj: $.inArray(str1, list_obj), angle: num, id: socket_id });
     };
     ext.Obj_movex = function(str,num) {
+        timer = 0;
         socket.emit('scratch/movex', { obj: $.inArray(str, list_obj), movex: num, id: socket_id });
     };
     ext.Obj_movey = function(str,num) {
+        timer = 0;
         socket.emit('scratch/movey', { obj: $.inArray(str, list_obj), movey: num, id: socket_id });
     };
     ext.Obj_warp = function(str,num1,num2) {
+        timer = 0;
         socket.emit('scratch/warp', { obj: $.inArray(str, list_obj), warpx: 0, warpy: 0, id: socket_id, center:1});
     };
     ext.Obj_warp2 = function(str1,str2,str3) {
+        timer = 0;
         socket.emit('scratch/warp', { obj: $.inArray(str1, list_obj), warpx: obj_prop[$.inArray(str2, list_mem)][$.inArray(str3, list_obj)][list_obj.length-2], warpy: obj_prop[$.inArray(str2, list_mem)][$.inArray(str3, list_obj)][list_obj.length-1], id: socket_id, center:1});
     };
     ext.Obj_hide = function(str) {
+        timer = 0;
         socket.emit('scratch/hide', { obj: $.inArray(str, list_obj), id: socket_id });
     };
     ext.Obj_appear = function(str) {
+        timer = 0;
         socket.emit('scratch/appear', { obj: $.inArray(str, list_obj), id: socket_id });
     };
     ext.Obj_getx = function(str1,str2) {
@@ -165,7 +176,6 @@
         socket.emit('scratch/send', { mes: str, id: socket_id });
     };
     ext.Obj_emit = function(){
-        timer++;
         return(timer);
     };
     // ブロックと関数のひも付け
@@ -198,8 +208,11 @@
     };
     var _timer = function(){
         timer++;
+        if(timer == 2){
+            alert('きました！');
+        }
     }
-    setInterval(_timer,33);
+    setInterval(_timer,40);
     // 最後にExtensionを登録する
     ScratchExtensions.register('Scratch 2 Co-learning', descriptor, ext);
 
