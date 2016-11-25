@@ -137,12 +137,12 @@
             execution = [];
         }
         for(var cnta = 0; cnta < 4; cnta++){
-                send_log[cnta] = $.extend(true, {}, send_log[cnta+1]);
+                send_log[cnta] = $.extend(true, [], send_log[cnta+1]);
         }
-        send_log[4] = $.extend(true, {}, send_server);
+        send_log[4] = $.extend(true, [], send_server);
         send_log_old = [];
         for(var cnta = 1; cnta < 5; cnta++){
-                send_log_old = $.extend(true, {}, send_log_old, send_log[cnta]);
+                send_log_old = $.extend(true, [], send_log_old, send_log[cnta]);
         }
         send_server = [];
         if(timer > 100){
@@ -151,7 +151,7 @@
             timer++;
         }
     }
-    
+
     // shutdown時に呼ばれる
     ext._shutdown = function() {
         socket.emit('scratch/bye', { id: socket_id });
