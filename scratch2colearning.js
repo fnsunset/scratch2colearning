@@ -133,7 +133,7 @@
     }
     var checkJSONarray = function(object,objectarray){
         if(objectarray){
-            for(var cnt = 1; cnt < objectarray.length;cnt++){
+            for(var cnt = 0; cnt < objectarray.length;cnt++){
                 if(checkJSON(object,objectarray[cnt])){
                     return true;
                 }
