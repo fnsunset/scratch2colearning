@@ -208,7 +208,7 @@
     };
     var _timer = function(){
         timer++;
-        if(timer == 2){
+        if(timer == 3){
             alert('きました！');
         }
     }
