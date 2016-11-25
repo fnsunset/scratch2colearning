@@ -86,7 +86,7 @@
 
     var checkJSONarray = function(object,objectarray){
         if(objectarray){
-            for(var cnt = 0; cnt <= objectarray.length; cnt++){
+            for(var cnt = 0; cnt < objectarray.length; cnt++){
                 if(checkJSON(object,objectarray[cnt])){
                     return true;
                 }
@@ -118,7 +118,7 @@
         });
         $.each(send_log[0],function(i,val){
             if(!checkJSONarray(val,send_log_old)){
-                console.log(JSON.stringify(send_log[0])+' \n'+JSON.stringify(send_log_old));
+                console.log(JSON.stringify(val)+' \n'+JSON.stringify(send_log_old));
                 //socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 0});
                 for(var cnt = 0; cnt < execution.length;cnt++){
                     if(checkJSON(val,execution[cnt])){
