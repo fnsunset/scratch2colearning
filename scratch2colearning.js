@@ -85,7 +85,7 @@
     var _timer = function(){
         //if(socket_id){
             $.each(send_server,function(i,val){
-                if(!checkJSONarray(val,send_log[0])){
+                if(!checkJSONarray(val,send_log[9])){
                     //socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 1});
                     console.log(val.emit + ' start');
                 }
