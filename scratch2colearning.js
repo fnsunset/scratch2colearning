@@ -321,7 +321,7 @@
         }
     };
 
-    setInterval(_timer,40);
+    setInterval(_timer,30);
     // 最後にExtensionを登録する
     ScratchExtensions.register('Scratch 2 Co-learning', descriptor, ext);
 
