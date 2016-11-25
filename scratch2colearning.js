@@ -81,7 +81,7 @@
 
     var _timer = function(){
         timer++;
-        console.log(JSON.stringify(emit));
+        console.log(JSON.stringify(send_server[0]));
         //if(socket_id){
             $.each(send_server,function(i,val){
                 if(!checkJSONarray(val,send_log)){
