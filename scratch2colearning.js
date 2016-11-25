@@ -180,6 +180,7 @@
         }else{
             console.log('重複がありました');
         }
+        callback();
         //socket.emit('scratch/move', { obj: $.inArray(str, list_obj), move: num, id: socket_id });
     };
     ext.Obj_cw = function(str,num) {
