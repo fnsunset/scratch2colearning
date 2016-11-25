@@ -84,33 +84,30 @@
     }
 
     var _timer = function(){
-        //if(socket_id){
-            $.each(send_server,function(i,val){
-                if(!checkJSONarray(val,send_log[4])){
-                    //socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 1});
-                    console.log(val.emit + ' start');
-                }
-            });
-            $.each(send_log[0],function(i,val){
-                if(!checkJSONarray(val,send_server) && send_log[0]){
-                    //socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 0});
-                    for(var cnt; cnt < execution.length;cnt++){
-                        if(checkJSON(val,execution[cnt])){
-                            execution.splice(cnt,1);
-                            break;
-                        }
+        $.each(send_server,function(i,val){
+            if(!checkJSONarray(val,send_log[4])){
+                //socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 1});
+            }
+        });
+        $.each(send_log[0],function(i,val){
+            if(!checkJSONarray(val,send_server) && send_log[0]){
+                //socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 0});
+                for(var cnt; cnt < execution.length;cnt++){
+                    if(checkJSON(val,execution[cnt])){
+                        execution.splice(cnt,1);
+                        break;
                     }
-                    console.log(val.emit + ' stop');
                 }
-            });
-        //}
+                console.log(val.emit + ' stop');
+            }
+        });
         if(timer === 5){
-            execution = [];
             console.log('止まりました');
-            $.each(send_server,function(i,val){
+            $.each(execution,function(i,val){
                 //socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 0});
                 console.log(val.emit + ' stop');
             });
+            execution = [];
         }
         for(var cnta = 0; cnta < 4; cnta++){
                 send_log[cnta] = $.extend(true, {}, send_log[cnta+1]);
@@ -177,6 +174,7 @@
             send_server.push(emit);
             execution.push(emit);
             $.unique(execution);
+            console.log(emit.emit + ' start');
         }else{
             console.log('重複がありました');
         }
