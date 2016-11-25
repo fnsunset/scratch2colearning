@@ -154,6 +154,7 @@
     ext.Obj_move = function(str,num) {
         timer = 0;
         var emit = {emit:'scratch/move', obj: $.inArray(str, list_obj), num1: num, num2: 0, id: socket_id, str: '', emitsw: 1};
+        console.log(emit.emit);
         if(checkJSONarray(emit,send_server)){
             send_server.unshift(emit);
         }
