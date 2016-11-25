@@ -171,6 +171,8 @@
         var emit = {emit:'scratch/move', obj: $.inArray(str, list_obj), num1: num, num2: 0, id: socket_id, str: '', emitsw: 1};
         if(!checkJSONarray(emit,execution)){
             send_server.push(emit);
+            execution.push(emit);
+            $.unique(execution);
         }else{
             console.log('重複がありました');
         }
