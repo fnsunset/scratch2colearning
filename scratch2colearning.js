@@ -90,6 +90,7 @@
                 //socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 1});
             }
         });
+        $.unique(execution);
         $.each(send_log[0],function(i,val){
             if(!checkJSONarray(val,send_server)){
                 //socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 0});
@@ -171,7 +172,7 @@
     ext.Obj_move = function(str,num,callback) {
         timer = 0;
         var emit = {emit:'scratch/move', obj: $.inArray(str, list_obj), num1: num, num2: 0, id: socket_id, str: '', emitsw: 1};
-        if(!checkJSONarray(emit,execution)){
+        if(!checkJSONarray(emit,send_server)){
             send_server.push(emit);
             execution.push(emit);
             console.log(emit.emit + ' start');
@@ -182,7 +183,7 @@
     ext.Obj_cw = function(str,num,callback) {
         timer = 0;
         var emit = {emit:'scratch/rotate', obj: $.inArray(str, list_obj), num1: num * -1, num2: 0, id: socket_id, str: '', emitsw: 1};
-        if(!checkJSONarray(emit,execution)){
+        if(!checkJSONarray(emit,send_server)){
             send_server.push(emit);
             execution.push(emit);
             console.log(emit.emit + ' start');
@@ -193,7 +194,7 @@
     ext.Obj_rcw = function(str,num,callback) {
         timer = 0;
         var emit = {emit:'scratch/rotate', obj: $.inArray(str, list_obj), num1: num, num2: 0, id: socket_id, str: '', emitsw: 1};
-        if(!checkJSONarray(emit,execution)){
+        if(!checkJSONarray(emit,send_server)){
             send_server.push(emit);
             execution.push(emit);
             console.log(emit.emit + ' start');
@@ -204,7 +205,7 @@
     ext.Obj_ang = function(str,num,callback) {
         timer = 0;
         var emit = {emit:'scratch/ang', obj: $.inArray(str, list_obj), num1: num, num2: 0, id: socket_id, str: '', emitsw: 1};
-        if(!checkJSONarray(emit,execution)){
+        if(!checkJSONarray(emit,send_server)){
             send_server.push(emit);
             execution.push(emit);
             console.log(emit.emit + ' start');
@@ -216,7 +217,7 @@
         timer = 0;
         var num = Math.atan2(obj_prop[$.inArray(str2, list_mem)][$.inArray(str3, list_obj)][list_obj.length-1] - obj_prop[number_id][$.inArray(str1, list_obj)][list_obj.length-1], obj_prop[$.inArray(str2, list_mem)][$.inArray(str3, list_obj)][list_obj.length-2] - obj_prop[number_id][$.inArray(str1, list_obj)][list_obj.length-1]) * 180 / Math.PI;
         var emit = {emit:'scratch/ang', obj: $.inArray(str1, list_obj), num1: num, num2: 0, id: socket_id, str: '', emitsw: 1};
-        if(!checkJSONarray(emit,execution)){
+        if(!checkJSONarray(emit,send_server)){
             send_server.push(emit);
             execution.push(emit);
             console.log(emit.emit + ' start');
@@ -227,7 +228,7 @@
     ext.Obj_movex = function(str,num,callback) {
         timer = 0;
         var emit = {emit:'scratch/movexy', obj: $.inArray(str, list_obj), num1: num, num2: 0, id: socket_id, str: '', emitsw: 1};
-        if(!checkJSONarray(emit,execution)){
+        if(!checkJSONarray(emit,send_server)){
             send_server.push(emit);
             execution.push(emit);
             console.log(emit.emit + ' start');
@@ -238,7 +239,7 @@
     ext.Obj_movey = function(str,num,callback) {
         timer = 0;
         var emit = {emit:'scratch/movexy', obj: $.inArray(str, list_obj), num1: 0, num2: num, id: socket_id, str: '', emitsw: 1};
-        if(!checkJSONarray(emit,execution)){
+        if(!checkJSONarray(emit,send_server)){
             send_server.push(emit);
             execution.push(emit);
             console.log(emit.emit + ' start');
@@ -249,7 +250,7 @@
     ext.Obj_center = function(str,num1,num2,callback) {
         timer = 0;
         var emit = {emit:'scratch/center', obj: $.inArray(str, list_obj), num1: 0, num2: 0, id: socket_id, str: '', emitsw: 1};
-        if(!checkJSONarray(emit,execution)){
+        if(!checkJSONarray(emit,send_server)){
             send_server.push(emit);
             execution.push(emit);
             console.log(emit.emit + ' start');
@@ -260,7 +261,7 @@
     ext.Obj_warp = function(str1,str2,str3,callback) {
         timer = 0;
         var emit = {emit:'scratch/warp', obj: $.inArray(str, list_obj), num1: obj_prop[$.inArray(str2, list_mem)][$.inArray(str3, list_obj)][list_obj.length-2], num2: obj_prop[$.inArray(str2, list_mem)][$.inArray(str3, list_obj)][list_obj.length-1], id: socket_id, str: '', emitsw: 1};
-        if(!checkJSONarray(emit,execution)){
+        if(!checkJSONarray(emit,send_server)){
             send_server.push(emit);
             execution.push(emit);
             console.log(emit.emit + ' start');
@@ -271,7 +272,7 @@
     ext.Obj_hide = function(str,callback) {
         timer = 0;
         var emit = {emit:'scratch/hide', obj: $.inArray(str, list_obj), num1: 0, num2: 0, id: socket_id, str: '', emitsw: 1};
-        if(!checkJSONarray(emit,execution)){
+        if(!checkJSONarray(emit,send_server)){
             send_server.push(emit);
             execution.push(emit);
             console.log(emit.emit + ' start');
@@ -282,7 +283,7 @@
     ext.Obj_appear = function(str,callback) {
         timer = 0;
         var emit = {emit:'scratch/hide', obj: $.inArray(str, list_obj), num1: 1, num2: 0, id: socket_id, str: '', emitsw: 1};
-        if(!checkJSONarray(emit,execution)){
+        if(!checkJSONarray(emit,send_server)){
             send_server.push(emit);
             execution.push(emit);
             console.log(emit.emit + ' start');
