@@ -102,7 +102,7 @@
                     }
                 }
             }
-        });
+        }
         if(timer === 5){
             console.log('止まりました');
             $.each(execution,function(i,val){
