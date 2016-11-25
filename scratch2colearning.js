@@ -304,7 +304,7 @@
             [' ', 'Connect %s', 'Connect','192.168.2.104'],
             ['r', 'Socket ID', 'Obj_getid'],
             ['r', 'emit', 'Obj_emit'],
-            [' ', '%m.List_obj を %n 歩動かす', 'Obj_move', list_obj[0],10],
+            ['w', '%m.List_obj を %n 歩動かす', 'Obj_move', list_obj[0],10],
             [' ', '%m.List_obj を時計回りに %n 度回す', 'Obj_cw', list_obj[0], 15],
             [' ', '%m.List_obj を反時計回りに %n 度回す', 'Obj_rcw', list_obj[0], 15],
             [' ', '%m.List_obj を %n 度に向ける', 'Obj_ang', list_obj[0], 10],
