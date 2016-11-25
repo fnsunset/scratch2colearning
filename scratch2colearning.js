@@ -175,8 +175,8 @@
             send_server.push(emit);
             if(!checkJSONarray(emit,execution)){
                 execution.push(emit);
+                console.log(emit.emit + ' start');
             }
-            console.log(emit.emit + ' start');
         }
         callback();
         //socket.emit('scratch/move', { obj: $.inArray(str, list_obj), move: num, id: socket_id });
@@ -188,8 +188,8 @@
             send_server.push(emit);
             if(!checkJSONarray(emit,execution)){
                 execution.push(emit);
+                console.log(emit.emit + ' start');
             }
-            console.log(emit.emit + ' start');
         }
         callback();
         //socket.emit('scratch/rotate', { obj: $.inArray(str, list_obj), rotate: num * -1, id: socket_id });
@@ -201,8 +201,8 @@
             send_server.push(emit);
             if(!checkJSONarray(emit,execution)){
                 execution.push(emit);
+                console.log(emit.emit + ' start');
             }
-            console.log(emit.emit + ' start');
         }
         callback();
         //socket.emit('scratch/rotate', { obj: $.inArray(str, list_obj), rotate: num , id: socket_id });
@@ -214,8 +214,8 @@
             send_server.push(emit);
             if(!checkJSONarray(emit,execution)){
                 execution.push(emit);
+                console.log(emit.emit + ' start');
             }
-            console.log(emit.emit + ' start');
         }
         callback();
         //socket.emit('scratch/ang', { obj: $.inArray(str, list_obj), angle: num, id: socket_id });
@@ -228,8 +228,8 @@
             send_server.push(emit);
             if(!checkJSONarray(emit,execution)){
                 execution.push(emit);
+                console.log(emit.emit + ' start');
             }
-            console.log(emit.emit + ' start');
         }
         callback();
         //socket.emit('scratch/ang', { obj: $.inArray(str1, list_obj), angle: num, id: socket_id });
@@ -241,8 +241,8 @@
             send_server.push(emit);
             if(!checkJSONarray(emit,execution)){
                 execution.push(emit);
+                console.log(emit.emit + ' start');
             }
-            console.log(emit.emit + ' start');
         }
         callback();
         //socket.emit('scratch/movex', { obj: $.inArray(str, list_obj), movex: num, id: socket_id });
@@ -254,8 +254,8 @@
             send_server.push(emit);
             if(!checkJSONarray(emit,execution)){
                 execution.push(emit);
+                console.log(emit.emit + ' start');
             }
-            console.log(emit.emit + ' start');
         }
         callback();
         //socket.emit('scratch/movey', { obj: $.inArray(str, list_obj), movey: num, id: socket_id });
@@ -267,8 +267,8 @@
             send_server.push(emit);
             if(!checkJSONarray(emit,execution)){
                 execution.push(emit);
+                console.log(emit.emit + ' start');
             }
-            console.log(emit.emit + ' start');
         }
         callback();
         //socket.emit('scratch/warp', { obj: $.inArray(str, list_obj), warpx: 0, warpy: 0, id: socket_id, center:1});
@@ -280,8 +280,8 @@
             send_server.push(emit);
             if(!checkJSONarray(emit,execution)){
                 execution.push(emit);
+                console.log(emit.emit + ' start');
             }
-            console.log(emit.emit + ' start');
         }
         callback();
         //socket.emit('scratch/warp', { obj: $.inArray(str1, list_obj), warpx: obj_prop[$.inArray(str2, list_mem)][$.inArray(str3, list_obj)][list_obj.length-2], warpy: obj_prop[$.inArray(str2, list_mem)][$.inArray(str3, list_obj)][list_obj.length-1], id: socket_id, center:1});
@@ -293,8 +293,8 @@
             send_server.push(emit);
             if(!checkJSONarray(emit,execution)){
                 execution.push(emit);
+                console.log(emit.emit + ' start');
             }
-            console.log(emit.emit + ' start');
         }
         callback();
         //socket.emit('scratch/hide', { obj: $.inArray(str, list_obj), id: socket_id });
@@ -306,8 +306,8 @@
             send_server.push(emit);
             if(!checkJSONarray(emit,execution)){
                 execution.push(emit);
+                console.log(emit.emit + ' start');
             }
-            console.log(emit.emit + ' start');
         }
         callback();
         //socket.emit('scratch/appear', { obj: $.inArray(str, list_obj), id: socket_id });
@@ -343,8 +343,8 @@
             send_server.unshift(emit);
             if(!checkJSONarray(emit,execution)){
                 execution.push(emit);
+                console.log(emit.emit + ' start');
             }
-            console.log(emit.emit + ' start');
         }
         callback();
         //socket.emit('scratch/send', { mes: str, id: socket_id });
