@@ -120,7 +120,6 @@
                 send_log[cnta] = $.extend(true, [], send_log[cnta+1]);
         }
         send_log[log_size-1] = $.extend(true, [], send_server);
-        console.log(JSON.stringify(send_log[log_size-1])+' \n'+JSON.stringify(send_server));
         send_log_old = [];
         for(var cnta = 1; cnta < log_size; cnta++){
                 send_log_old = $.extend(true, [], send_log_old, send_log[cnta]);
@@ -139,7 +138,7 @@
             }
         });
         if(timer === log_size){
-            console.log('止まりました');
+            console.log('実行する命令がありません');
             $.each(execution,function(i,val){
                 //socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 0});
                 console.log(val.emit + ' stop');
