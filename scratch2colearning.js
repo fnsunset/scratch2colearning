@@ -1,5 +1,5 @@
 (function(ext) {
-    alert("Connect! Ver 11.25.03");
+    alert("Connect! Ver 11.25.04");
     var socket = { on: function(){} };
     var socket_id = '';
     var member_id = 0;
@@ -24,6 +24,9 @@
     var timer = 0;
     var send_server = [];
     var send_log = [];
+    for(var cnta = 0; cnta < 5; cnta++){
+                send_log[cnta] = [];
+    }
     var connect_server = function(str){
         if(!socket.connected){
         socket = io.connect('http://'+str+':8080');
@@ -82,12 +85,12 @@
     var _timer = function(){
         //if(socket_id){
             $.each(send_server,function(i,val){
-                if(!checkJSONarray(val,send_log)){
+                if(!checkJSONarray(val,send_log[0])){
                     //socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 1});
                     console.log(val.emit + ' start');
                 }
             });
-            $.each(send_log,function(i,val){
+            $.each(send_log[0],function(i,val){
                 if(!checkJSONarray(val,send_server)){
                     //socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 0});
                     console.log(val.emit + ' stop');
@@ -100,7 +103,10 @@
                 console.log(val.emit + ' stop');
             });
         }
-        send_log = $.extend(true, {}, send_server);
+        for(var cnta = 0; cnta < 4; cnta++){
+                send_log[cnta] = $.extend(true, {}, send_log[cnta+1]);
+        }
+        send_log[4] = $.extend(true, {}, send_server);
         send_server = [];
         if(timer > 100){
             timer = 100;
@@ -161,7 +167,6 @@
         console.log(JSON.stringify(emit));
         if(!checkJSONarray(emit,send_server)){
             send_server.push(emit);
-            console.log('EMIT!!!');
         }
         //socket.emit('scratch/move', { obj: $.inArray(str, list_obj), move: num, id: socket_id });
     };
