@@ -1,5 +1,5 @@
 (function(ext) {
-    alert("Connect! Ver 11.25.08");
+    alert("Connect! Ver 11.25.10");
     var socket = { on: function(){} };
     var socket_id = '';
     var member_id = 0;
@@ -26,6 +26,7 @@
     var send_log = [];
     var send_log_old = [];
     var execution = [];
+    var my_name = '';
     var log_size = 3;
     var wait_time = 40;
     for(var cnta = 0; cnta < log_size; cnta++){
@@ -49,6 +50,7 @@
             if(member_id == data.Number){
                 group_id = data.Group;
                 number_id = data.Number;
+                my_name = data.Name;
             }
         });
         socket.on('server/objupdate', function (data) {
@@ -176,7 +178,7 @@
         connect_server(str);
     };
     ext.Obj_getid = function() {
-        return(member_id+'/'+group_id+' あなたは'+list_mem[number_id]+'さん');
+        return(my_name+'('+member_id+')/グループ'+group_id+' あなたは'+list_mem[number_id]+'さん');
     };
     ext.Obj_move = function(str,num) {
         timer = 0;
@@ -286,9 +288,6 @@
         if(checkJSONarray(emit,send_server)){
             send_server.unshift(emit);
         }
-    };
-    ext.Obj_emit = function(){
-        return(timer);
     };
     // ブロックと関数のひも付け
     var descriptor = {
