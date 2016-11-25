@@ -84,6 +84,29 @@
         });
     }
 
+    var checkJSONarray = function(object,objectarray){
+        if(objectarray){
+            for(var cnt = 0; cnt < objectarray.length;cnt++){
+                if(checkJSON(object,objectarray[cnt])){
+                    return true;
+                }
+            }
+            console.log('みつからない'+objectarray.length);
+        }
+        return false;
+    }
+
+    var checkJSON = function(object1,object2){
+        var object1String = JSON.stringify(object1); 
+        var object2String = JSON.stringify(object2);
+        // json文字列で比較する
+        if (object1String === object2String) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     var _timer = function(){
         $.each(send_server,function(i,val){
             console.log('send_server');
@@ -128,28 +151,7 @@
             timer++;
         }
     }
-
-    var checkJSON = function(object1,object2){
-        var object1String = JSON.stringify(object1); 
-        var object2String = JSON.stringify(object2);
-        // json文字列で比較する
-        if (object1String === object2String) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    var checkJSONarray = function(object,objectarray){
-        if(objectarray){
-            for(var cnt = 0; cnt < objectarray.length;cnt++){
-                if(checkJSON(object,objectarray[cnt])){
-                    return true;
-                }
-            }
-            console.log('みつからない'+objectarray.length);
-        }
-        return false;
-    }
+    
     // shutdown時に呼ばれる
     ext._shutdown = function() {
         socket.emit('scratch/bye', { id: socket_id });
