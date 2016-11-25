@@ -66,9 +66,11 @@
             if (data.group == group_id ){
                 if(data.mem1 == member_id){
                     obj_prop[data.mem2][data.obj2][data.obj1] = 1;
+                    console.log('自分の'+data.obj1+'が、'+data.mem2+'の'+data.obj2+'に接触');
                 }
                 if(data.mem2 == member_id){
-                    obj_prop[data.mem1][data.obj1][data.obj2] = 1; 
+                    obj_prop[data.mem1][data.obj1][data.obj2] = 1;
+                    console.log('自分の'+data.obj2+'が、'+data.mem1+'の'+data.obj1+'に接触');
                 }
             }
         });
@@ -76,9 +78,11 @@
         if (data.group == group_id ){
                 if(data.mem1 == member_id){
                     obj_prop[data.mem2][data.obj2][data.obj1] = 0;
+                    console.log('自分の'+data.obj1+'が、'+data.mem2+'の'+data.obj2+'から離れた');
                 }
                 if(data.mem2 == member_id){
-                    obj_prop[data.mem1][data.obj1][data.obj2] = 0; 
+                    obj_prop[data.mem1][data.obj1][data.obj2] = 0;
+                    console.log('自分の'+data.obj2+'が、'+data.mem1+'の'+data.obj1+'に接触');
                 }
         }
         });
