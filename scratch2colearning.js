@@ -26,8 +26,8 @@
     var send_log = [];
     var send_log_old = [];
     var execution = [];
-    var log_size = 4;
-    var wait_time = 35;
+    var log_size = 3;
+    var wait_time = 40;
     for(var cnta = 0; cnta < log_size; cnta++){
                 send_log[cnta] = [];
     }
