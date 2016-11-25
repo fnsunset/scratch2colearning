@@ -24,7 +24,7 @@
     var timer = 0;
     var send_server = [];
     var send_log = [];
-    for(var cnta = 0; cnta < 10; cnta++){
+    for(var cnta = 0; cnta < 5; cnta++){
                 send_log[cnta] = [];
     }
     var connect_server = function(str){
@@ -85,28 +85,28 @@
     var _timer = function(){
         //if(socket_id){
             $.each(send_server,function(i,val){
-                if(!checkJSONarray(val,send_log[9])){
+                if(!checkJSONarray(val,send_log[4])){
                     //socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 1});
                     console.log(val.emit + ' start');
                 }
             });
             $.each(send_log[0],function(i,val){
-                if(!checkJSONarray(val,send_server)){
+                if(!checkJSONarray(val,send_server) && send_log[0]){
                     //socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 0});
                     console.log(val.emit + ' stop');
                 }
             });
         //}
-        if(timer === 10){
+        if(timer === 5){
             $.each(send_server,function(i,val){
                 //socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 0});
                 console.log(val.emit + ' stop');
             });
         }
-        for(var cnta = 0; cnta < 9; cnta++){
+        for(var cnta = 0; cnta < 4; cnta++){
                 send_log[cnta] = $.extend(true, {}, send_log[cnta+1]);
         }
-        send_log[9] = $.extend(true, {}, send_server);
+        send_log[4] = $.extend(true, {}, send_server);
         send_server = [];
         if(timer > 100){
             timer = 100;
