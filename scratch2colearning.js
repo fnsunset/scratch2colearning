@@ -24,6 +24,7 @@
     var timer = 0;
     var send_server = [];
     var send_log = [];
+    var send_log_old = [];
     var execution = [];
     for(var cnta = 0; cnta < 5; cnta++){
                 send_log[cnta] = [];
@@ -91,15 +92,15 @@
             }
         });
         $.each(send_log[0],function(i,val){
-            if(!checkJSONarray(val,send_server)){
+            if(!checkJSONarray(val,send_log_old)){
                 //socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 0});
                 for(var cnt; cnt < execution.length;cnt++){
                     if(checkJSON(val,execution[cnt])){
                         execution.splice(cnt,1);
+                        console.log(val.emit + ' stop');
                         break;
                     }
                 }
-                console.log(val.emit + ' stop');
             }
         });
         if(timer === 5){
@@ -114,6 +115,10 @@
                 send_log[cnta] = $.extend(true, {}, send_log[cnta+1]);
         }
         send_log[4] = $.extend(true, {}, send_server);
+        send_log_old = [];
+        for(var cnta = 1; cnta < 5; cnta++){
+                send_log_old = $.extend(true, {}, send_log_old, send_log[cnta]);
+        }
         send_server = [];
         if(timer > 100){
             timer = 100;
