@@ -82,7 +82,7 @@
                 }
                 if(data.mem2 == member_id){
                     obj_prop[data.mem1][data.obj1][data.obj2] = 0;
-                    console.log('自分の'+data.obj2+'が、'+data.mem1+'の'+data.obj1+'に接触');
+                    console.log('自分の'+data.obj2+'が、'+data.mem1+'の'+data.obj1+'にから離れた');
                 }
         }
         });
