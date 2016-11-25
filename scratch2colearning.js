@@ -170,7 +170,7 @@
     ext.Obj_getid = function() {
         return(member_id+'/'+group_id+' あなたは'+list_mem[number_id]+'さん');
     };
-    ext.Obj_move = function(str,num) {
+    ext.Obj_move = function(str,num,callback) {
         timer = 0;
         var emit = {emit:'scratch/move', obj: $.inArray(str, list_obj), num1: num, num2: 0, id: socket_id, str: '', emitsw: 1};
         if(!checkJSONarray(emit,execution)){
@@ -180,6 +180,7 @@
         }else{
             console.log('重複がありました');
         }
+        callback();
         //socket.emit('scratch/move', { obj: $.inArray(str, list_obj), move: num, id: socket_id });
     };
     ext.Obj_cw = function(str,num) {
@@ -304,7 +305,7 @@
             [' ', 'Connect %s', 'Connect','192.168.2.104'],
             ['r', 'Socket ID', 'Obj_getid'],
             ['r', 'emit', 'Obj_emit'],
-            [' ', '%m.List_obj を %n 歩動かす', 'Obj_move', list_obj[0],10],
+            ['w', '%m.List_obj を %n 歩動かす', 'Obj_move', list_obj[0],10],
             [' ', '%m.List_obj を時計回りに %n 度回す', 'Obj_cw', list_obj[0], 15],
             [' ', '%m.List_obj を反時計回りに %n 度回す', 'Obj_rcw', list_obj[0], 15],
             [' ', '%m.List_obj を %n 度に向ける', 'Obj_ang', list_obj[0], 10],
