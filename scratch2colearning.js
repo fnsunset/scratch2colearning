@@ -98,7 +98,7 @@
             $.each(send_server,function(i,val){
                 //socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 0});
                 console.log(val.emit + ' stop');
-            }
+            });
         }
         send_log = $.extend(true, {}, send_server);
         send_server = [];
