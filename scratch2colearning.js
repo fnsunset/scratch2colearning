@@ -21,6 +21,7 @@
 
     var say = [];    //メッセージの送受信を記録に残す用
     var say_log = false;    //寸前にtrueになってたら一旦falseにするためのスイッチ
+    var timer = 0;
     var connect_server = function(str){
         if(!socket.connected){
         socket = io.connect('http://'+str+':8080');
@@ -164,13 +165,15 @@
         socket.emit('scratch/send', { mes: str, id: socket_id });
     };
     ext.Obj_emit = function(){
-        
+        timer++;
+        return(timer);
     };
     // ブロックと関数のひも付け
     var descriptor = {
         blocks: [
             [' ', 'Connect %s', 'Connect','192.168.2.104'],
             ['r', 'Socket ID', 'Obj_getid'],
+            ['r', 'emit', 'Obj_emit'],
             [' ', '%m.List_obj を %n 歩動かす', 'Obj_move', list_obj[0],10],
             [' ', '%m.List_obj を時計回りに %n 度回す', 'Obj_cw', list_obj[0], 15],
             [' ', '%m.List_obj を反時計回りに %n 度回す', 'Obj_rcw', list_obj[0], 15],
@@ -193,7 +196,10 @@
             List_obj:list_obj
         }
     };
-
+    var _timer = function(){
+        timer++;
+    }
+    setInterval(_timer,33);
     // 最後にExtensionを登録する
     ScratchExtensions.register('Scratch 2 Co-learning', descriptor, ext);
 
