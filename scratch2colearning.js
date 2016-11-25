@@ -94,6 +94,12 @@
             $.each(send_log[0],function(i,val){
                 if(!checkJSONarray(val,send_server) && send_log[0]){
                     //socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 0});
+                    for(var cnt; cnt < execution.length;cnt++){
+                        if(checkJSON(val,execution[cnt])){
+                            execution.splice(cnt,1);
+                            break;
+                        }
+                    }
                     console.log(val.emit + ' stop');
                 }
             });
@@ -101,17 +107,19 @@
         if(timer === 5){
             $.each(send_server,function(i,val){
                 //socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 0});
+                for(var cnt; cnt < execution.length;cnt++){
+                    if(checkJSON(val,execution[cnt])){
+                        execution.splice(cnt,1);
+                        break;
+                    }
+                }
                 console.log(val.emit + ' stop');
             });
         }
-        execution = [];
         for(var cnta = 0; cnta < 4; cnta++){
                 send_log[cnta] = $.extend(true, {}, send_log[cnta+1]);
-                $.merge(execution, send_log[cnta]);
         }
         send_log[4] = $.extend(true, {}, send_server);
-        $.merge(execution, send_log[4]);
-        $.unique(execution);
         send_server = [];
         if(timer > 100){
             timer = 100;
@@ -172,7 +180,7 @@
         if(!checkJSONarray(emit,execution)){
             send_server.push(emit);
             execution.push(emit);
-            $.unique(execution);
+            //$.unique(execution);
         }else{
             console.log('重複がありました');
         }
