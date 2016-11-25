@@ -62,7 +62,7 @@
         socket.on('server/tellid', function (data) {
             member_id = data.idnumber;
         });
-        socket.on('server/colision_on', function (data) {
+        socket.on('server/collision_on', function (data) {
             if (data.group == group_id ){
                 if(data.mem1 == member_id){
                     obj_prop[data.mem2][data.obj2][data.obj1] = 1;
@@ -74,7 +74,7 @@
                 }
             }
         });
-        socket.on('server/colision_off', function (data) {
+        socket.on('server/collision_off', function (data) {
         if (data.group == group_id ){
                 if(data.mem1 == member_id){
                     obj_prop[data.mem2][data.obj2][data.obj1] = 0;
