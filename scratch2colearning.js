@@ -118,6 +118,7 @@
                 send_log[cnta] = $.extend(true, [], send_log[cnta+1]);
         }
         send_log[4] = $.extend(true, [], send_server);
+        console.log(JSON.stringify(send_log[4])+' \n'+JSON.stringify(send_server));
         send_log_old = [];
         for(var cnta = 1; cnta < 5; cnta++){
                 send_log_old = $.extend(true, [], send_log_old, send_log[cnta]);
@@ -125,7 +126,6 @@
         send_server = [];
         $.each(send_log[0],function(i,val){     //（だいたい）5フレーム前の命令リスト
             if(!checkJSONarray(val,send_log_old)){  //4フレーム~0フレーム前までに実行されていなければ
-                console.log(JSON.stringify(val)+' \n'+JSON.stringify(send_log_old));
                 for(var cnt = 0; cnt < execution.length;cnt++){ //実行中命令一覧から消去して
                     if(checkJSON(val,execution[cnt])){
                         execution.splice(cnt,1);
