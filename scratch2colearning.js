@@ -106,24 +106,31 @@
         }
     }
 
-    var _timer = function(){
-        $.each(send_server,function(i,val){
-            if(!checkJSONarray(val,send_log[4])){
-                if(!checkJSONarray(val,execution)){
-                    execution.push(val);
-                    console.log(val.emit + ' start');
-                }
-                //socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 1});
+    var _timer = function(){                //指定ミリ秒に1回実行される
+        $.each(send_server,function(i,val){ //今回新しく拾った命令たち
+            if(!checkJSONarray(val,execution)){ //実行中命令リストから見つからなければ
+                execution.push(val);            //実行中命令に含める
+                console.log(val.emit + ' start');   //開始！
+            //socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 1});
             }
         });
-        $.each(send_log[0],function(i,val){
-            if(!checkJSONarray(val,send_log_old)){
+        for(var cnta = 0; cnta < 4; cnta++){
+                send_log[cnta] = $.extend(true, [], send_log[cnta+1]);
+        }
+        send_log[4] = $.extend(true, [], send_server);
+        send_log_old = [];
+        for(var cnta = 1; cnta < 5; cnta++){
+                send_log_old = $.extend(true, [], send_log_old, send_log[cnta]);
+        }
+        send_server = [];
+        $.each(send_log[0],function(i,val){     //（だいたい）5フレーム前の命令リスト
+            if(!checkJSONarray(val,send_log_old)){  //4フレーム~0フレーム前までに実行されていなければ
                 console.log(JSON.stringify(val)+' \n'+JSON.stringify(send_log_old));
-                //socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 0});
-                for(var cnt = 0; cnt < execution.length;cnt++){
+                for(var cnt = 0; cnt < execution.length;cnt++){ //実行中命令一覧から消去して
                     if(checkJSON(val,execution[cnt])){
                         execution.splice(cnt,1);
-                        console.log(val.emit + ' stop');
+                        console.log(val.emit + ' stop');    //止めます！
+                        //socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 0});
                         break;
                     }
                 }
@@ -137,15 +144,6 @@
             });
             execution = [];
         }
-        for(var cnta = 0; cnta < 4; cnta++){
-                send_log[cnta] = $.extend(true, [], send_log[cnta+1]);
-        }
-        send_log[4] = $.extend(true, [], send_server);
-        send_log_old = [];
-        for(var cnta = 1; cnta < 5; cnta++){
-                send_log_old = $.extend(true, [], send_log_old, send_log[cnta]);
-        }
-        send_server = [];
         if(timer > 100){
             timer = 100;
         }else{
