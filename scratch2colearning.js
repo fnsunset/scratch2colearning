@@ -144,9 +144,7 @@
                     return true;
                 }
             }
-            console.log('みつからない');
-        }else{
-            console.log('未定義');
+            console.log('みつからない'+objectarray.length);
         }
         return false;
     }
