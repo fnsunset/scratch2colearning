@@ -133,7 +133,7 @@
                     if(checkJSON(val,execution[cnt])){
                         execution.splice(cnt,1);
                         console.log(val.emit + ' stop');    //止めます！
-                        socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 0});
+                        socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: -1});
                         break;
                     }
                 }
@@ -142,7 +142,7 @@
         if(timer === log_size){
             console.log('実行する命令がありません');
             $.each(execution,function(i,val){
-                socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 0});
+                socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: -1});
                 console.log(val.emit + ' stop');
             });
             execution = [];
