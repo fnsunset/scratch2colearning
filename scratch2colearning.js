@@ -1,5 +1,5 @@
 (function(ext) {
-    alert("Connect! Ver 11.25.04");
+    alert("Connect! Ver 11.25.05");
     var socket = { on: function(){} };
     var socket_id = '';
     var member_id = 0;
@@ -104,6 +104,7 @@
                 console.log(val.emit + ' stop');
             });
         }
+        execution = [];
         for(var cnta = 0; cnta < 4; cnta++){
                 send_log[cnta] = $.extend(true, {}, send_log[cnta+1]);
                 $.merge(execution, send_log[cnta]);
