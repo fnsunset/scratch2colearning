@@ -1,5 +1,5 @@
 (function(ext) {
-    alert("Connect! Ver 11.25.06");
+    alert("Connect! Ver 11.25.07");
     var socket = { on: function(){} };
     var socket_id = '';
     var member_id = 0;
@@ -27,7 +27,7 @@
     var send_log_old = [];
     var execution = [];
     var log_size = 3;
-    var wait_time = 40;
+    var wait_time = 33;
     for(var cnta = 0; cnta < log_size; cnta++){
                 send_log[cnta] = [];
     }
