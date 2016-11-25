@@ -90,7 +90,7 @@
             }
         });
         $.each(send_log[0],function(i,val){
-            if(!checkJSONarray(val,send_server) && send_log[0]){
+            if(!checkJSONarray(val,send_server)){
                 //socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 0});
                 for(var cnt; cnt < execution.length;cnt++){
                     if(checkJSON(val,execution[cnt])){
