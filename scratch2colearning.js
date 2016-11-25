@@ -304,7 +304,7 @@
     };
     ext.Obj_send = function(str) {
         timer = 0;
-        var emit = {emit:'scratch/send', obj: $.inArray(str, list_obj), num1: 0, num2: 0, id: socket_id, str: '', emitsw: 1};
+        var emit = {emit:'scratch/send', obj: $.inArray(str, list_obj), num1: 0, num2: 0, id: socket_id, str: str, emitsw: 1};
         if(checkJSONarray(emit,send_server)){
             send_server.unshift(emit);
         }
