@@ -92,7 +92,10 @@
         });
         $.each(send_log[0],function(i,val){
             if(!checkJSONarray(val,send_log_old)){
-                console.log(JSON.stringify(send_log_old)+'\n'+ JSON.stringify(val));
+                console.log(JSON.stringify(send_log_old[0])+'\n'+ JSON.stringify(val));
+                if(JSON.stringify(send_log_old[0]) == JSON.stringify(val)){
+                    console.log('いやでも合ってるでしょこれ');
+                }
                 //socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 0});
                 for(var cnt = 0; cnt < execution.length;cnt++){
                     if(checkJSON(val,execution[cnt])){
