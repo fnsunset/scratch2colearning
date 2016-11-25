@@ -91,13 +91,14 @@
             }
         });
         for(var cnta = 0;cnta < send_log[0].length; cnta++){
+            console.log(JSON.stringify(send_log[0][0]));
             if(!checkJSONarray(send_log[0][cnta],send_log_old)){
-                console.log(JSON.stringify(send_log_old)+'\n'+ JSON.stringify(val));
+                console.log(JSON.stringify(send_log_old)+'\n'+ JSON.stringify(send_log[0][cnta]));
                 //socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 0});
                 for(var cntb = 0; cntb < execution.length;cntb++){
-                    if(checkJSON(val,execution[cntb])){
+                    if(checkJSON(send_log[0][cnta],execution[cntb])){
                         execution.splice(cntb,1);
-                        console.log(val.emit + ' stop');
+                        console.log(send_log[0][cnta].emit + ' stop');
                         break;
                     }
                 }
