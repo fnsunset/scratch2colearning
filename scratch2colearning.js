@@ -106,6 +106,7 @@
         //}
         if(timer === 5){
             execution = [];
+            console.log('止まりました');
             $.each(send_server,function(i,val){
                 //socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 0});
                 console.log(val.emit + ' stop');
