@@ -1,5 +1,5 @@
 (function(ext) {
-    alert("Connect! Ver 11.25.02");
+    alert("Connect! Ver 11.25.03");
     var socket = { on: function(){} };
     var socket_id = '';
     var member_id = 0;
@@ -80,8 +80,6 @@
     }
 
     var _timer = function(){
-        timer++;
-        console.log(JSON.stringify(send_server[0]));
         //if(socket_id){
             $.each(send_server,function(i,val){
                 if(!checkJSONarray(val,send_log)){
@@ -96,13 +94,18 @@
                 }
             });
         //}
+        if(timer === 5){
+            $.each(send_server,function(i,val){
+                //socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 0});
+                console.log(val.emit + ' stop');
+            }
+        }
         send_log = $.extend(true, {}, send_server);
         send_server = [];
-        if(timer === 5){
-            alert('きました！');
-        }
         if(timer > 100){
             timer = 100;
+        }else{
+            timer++;
         }
     }
 
