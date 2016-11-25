@@ -26,7 +26,9 @@
     var send_log = [];
     var send_log_old = [];
     var execution = [];
-    for(var cnta = 0; cnta < 5; cnta++){
+    var log_size = 5;
+    var wait_time = 40;
+    for(var cnta = 0; cnta < log_size; cnta++){
                 send_log[cnta] = [];
     }
     var connect_server = function(str){
@@ -114,13 +116,13 @@
             //socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 1});
             }
         });
-        for(var cnta = 0; cnta < 4; cnta++){
+        for(var cnta = 0; cnta < log_size-1; cnta++){
                 send_log[cnta] = $.extend(true, [], send_log[cnta+1]);
         }
-        send_log[4] = $.extend(true, [], send_server);
-        console.log(JSON.stringify(send_log[4])+' \n'+JSON.stringify(send_server));
+        send_log[log_size-1] = $.extend(true, [], send_server);
+        console.log(JSON.stringify(send_log[log_size-1])+' \n'+JSON.stringify(send_server));
         send_log_old = [];
-        for(var cnta = 1; cnta < 5; cnta++){
+        for(var cnta = 1; cnta < log_size; cnta++){
                 send_log_old = $.extend(true, [], send_log_old, send_log[cnta]);
         }
         send_server = [];
@@ -136,7 +138,7 @@
                 }
             }
         });
-        if(timer === 5){
+        if(timer === log_size){
             console.log('止まりました');
             $.each(execution,function(i,val){
                 //socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 0});
@@ -342,7 +344,7 @@
         }
     };
 
-    setInterval(_timer,40);
+    setInterval(_timer,wait_time);
     // 最後にExtensionを登録する
     ScratchExtensions.register('Scratch 2 Co-learning', descriptor, ext);
 
