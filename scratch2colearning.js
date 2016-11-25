@@ -23,6 +23,7 @@
     var say_log = false;    //寸前にtrueになってたら一旦falseにするためのスイッチ
     var timer = 0;
     var send_server = [];
+    var send_log = [];
     var connect_server = function(str){
         if(!socket.connected){
         socket = io.connect('http://'+str+':8080');
@@ -80,8 +81,25 @@
 
     var _timer = function(){
         timer++;
-        if(timer == 3){
+        if(socket_id){
+            $.each(send_server,function(i,val){
+                if(!checkJSONarray(val,send_log)){
+                    socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 1});
+                }
+            });
+            $.each(send_log,function(i,val){
+                if(!checkJSONarray(val,send_server)){
+                    socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 0});
+                }
+            });
+        }
+        send_log = $.extend(true, {}, send_server);
+        send_server = [];
+        if(timer === 5){
             alert('きました！');
+        }
+        if(timer > 100){
+            timer = 100;
         }
     }
 
