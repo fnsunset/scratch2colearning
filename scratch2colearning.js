@@ -105,14 +105,9 @@
             });
         //}
         if(timer === 5){
+            execution = [];
             $.each(send_server,function(i,val){
                 //socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 0});
-                for(var cnt; cnt < execution.length;cnt++){
-                    if(checkJSON(val,execution[cnt])){
-                        execution.splice(cnt,1);
-                        break;
-                    }
-                }
                 console.log(val.emit + ' stop');
             });
         }
