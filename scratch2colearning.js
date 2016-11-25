@@ -85,7 +85,7 @@
     }
 
     var _timer = function(){
-        console.log(JSON.stringify(send_log_old));
+        console.log(JSON.stringify(send_log_old)+'\n'+ JSON.stringify(send_log[0]));
         $.each(send_server,function(i,val){
             if(!checkJSONarray(val,send_log[4])){
                 //socket.emit(val.emit, {obj: val.obj, num1: val.num1, num2: val.num2, id: val.id, str: val.str, emitsw: 1});
