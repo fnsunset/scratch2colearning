@@ -95,10 +95,10 @@
                 for(var cnt; cnt < execution.length;cnt++){
                     if(checkJSON(val,execution[cnt])){
                         execution.splice(cnt,1);
+                        console.log(val.emit + ' stop');
                         break;
                     }
                 }
-                console.log(val.emit + ' stop');
             }
         });
         if(timer === 5){
