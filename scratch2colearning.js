@@ -250,7 +250,7 @@
     };
     ext.Obj_warp = function(str1,str2,str3) {
         timer = 0;
-        var emit = {emit:'scratch/warp', obj: $.inArray(str, list_obj), num1: obj_prop[$.inArray(str2, list_mem)][$.inArray(str3, list_obj)][list_obj.length-2], num2: obj_prop[$.inArray(str2, list_mem)][$.inArray(str3, list_obj)][list_obj.length-1], id: socket_id, str: '', emitsw: 1};
+        var emit = {emit:'scratch/warp', obj: $.inArray(str1, list_obj), num1: obj_prop[$.inArray(str2, list_mem)][$.inArray(str3, list_obj)][list_obj.length-2], num2: obj_prop[$.inArray(str2, list_mem)][$.inArray(str3, list_obj)][list_obj.length-1], id: socket_id, str: '', emitsw: 1};
         if(!checkJSONarray(emit,send_server)){
             send_server.push(emit);
         }
