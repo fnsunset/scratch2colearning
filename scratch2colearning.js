@@ -1,12 +1,12 @@
 (function(ext) {
-    alert("Connect! Ver 11.26.02");
+    alert("Connect! Ver 11.26.03");
     var socket = { on: function(){} };
     var socket_id = '';
     var member_id = 0;
     var group_id = 0;
     var number_id = 0;
     var list_mem = ['A','B','C','D'];
-    var list_obj = ['モモンガ','ボール','ゆきだるま'];
+    var list_obj = ['モモンガ','こうもり','カエル','こうもり','ネコ','雪だるま','おばけ','飛行機','星','カンフーヌンチャク','ほうがん投げ','かめはめ波','カンフーボーイ','カンフーガール','ラグビーせんしゅ','ハンドボールボーイ','ハンドボールガール','アルティメット','やきゅうボール','バスケットボール','ドッジボール','ボウリング（みどり）','ボウリング（むらさき）','ハンドボール','ミラクルボール','サッカーボール','テニスボール','バレーボール'];
     var obj_prop = [];//obj_propは[a]さんの[b]のobj
     var allobj = list_mem.length * list_obj.length;
     for(var cnta = 0; cnta < list_mem.length; cnta++){
