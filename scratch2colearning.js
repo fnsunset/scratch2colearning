@@ -1,12 +1,12 @@
 (function(ext) {
-    alert("Connect! Ver 11.26.03");
+    alert("Connect! Ver 11.27.01");
     var socket = { on: function(){} };
     var socket_id = '';
     var member_id = 0;
     var group_id = 0;
     var number_id = 0;
     var list_mem = ['A','B','C','D'];
-    var list_obj = ['モモンガ','こうもり','カエル','こうもり','ネコ','雪だるま','おばけ','飛行機','星','カンフーヌンチャク','ほうがん投げ','かめはめ波','カンフーボーイ','カンフーガール','ラグビーせんしゅ','ハンドボールボーイ','ハンドボールガール','アルティメット','やきゅうボール','バスケットボール','ドッジボール','ボウリング（みどり）','ボウリング（むらさき）','ハンドボール','ミラクルボール','サッカーボール','テニスボール','バレーボール'];
+    var list_obj = ['モモンガ','こうもり','カエル','ネコ','雪だるま','おばけ','飛行機','星','カンフーヌンチャク','ほうがん投げ','かめはめ波','カンフーボーイ','カンフーガール','ラグビーせんしゅ','ハンドボールボーイ','ハンドボールガール','アルティメット','やきゅうボール','バスケットボール','ドッジボール','ボウリング（みどり）','ボウリング（むらさき）','ハンドボール','ミラクルボール','サッカーボール','テニスボール','バレーボール'];
     var obj_prop = [];//obj_propは[a]さんの[b]のobj
     var allobj = list_mem.length * list_obj.length;
     for(var cnta = 0; cnta < list_mem.length; cnta++){
@@ -22,6 +22,7 @@
     var say = [];    //メッセージの送受信を記録に残す用
     var say_log = false;    //寸前にtrueになってたら一旦falseにするためのスイッチ
     var timer = 0;
+    var timer2 = 0;
     var send_server = [];
     var send_log = [];
     var send_log_old = [];
@@ -162,6 +163,11 @@
         }else{
             timer++;
         }
+        if(timer2 > 10){
+            timer2 = 10;
+        }else{
+            timer2++;
+        }
     }
 
     // shutdown時に呼ばれる
@@ -295,9 +301,9 @@
     };
     ext.Obj_send = function(str) {
         timer = 0;
-        var emit = {emit:'scratch/send', obj: $.inArray(str, list_obj), num1: 0, num2: 0, id: socket_id, str: str, emitsw: 1};
-        if(checkJSONarray(emit,send_server)){
-            send_server.unshift(emit);
+        if(timer2 >5){
+            socket.emit('scratch/send', {id: socket_id, mes: str});
+            timer2 = 0;
         }
     };
     // ブロックと関数のひも付け
