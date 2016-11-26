@@ -88,7 +88,7 @@
         });
         socket.on('server/disconnect', function(data) { 
             if(data.id = member_id){
-                alart('切断されました');
+                alert('切断されました');
                 socket.disconnect();
             }
         });
