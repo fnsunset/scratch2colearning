@@ -1,5 +1,5 @@
 (function(ext) {
-    alert("Connect! Ver 11.25.10");
+    alert("Connect! Ver 11.26.01");
     var socket = { on: function(){} };
     var socket_id = '';
     var member_id = 0;
@@ -47,7 +47,7 @@
             }
         });
         socket.on('server/memupdate', function (data) {
-            if(member_id == data.Number){
+            if(member_id == data.ID){
                 group_id = data.Group;
                 number_id = data.Number;
                 my_name = data.Name;
