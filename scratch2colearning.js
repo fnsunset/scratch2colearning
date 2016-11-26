@@ -221,6 +221,7 @@
     ext.Obj_direct = function(str1,str2,str3) {
         timer = 0;
         var num = Math.atan2(obj_prop[$.inArray(str2, list_mem)][$.inArray(str3, list_obj)][list_obj.length-1] - obj_prop[number_id][$.inArray(str1, list_obj)][list_obj.length-1], obj_prop[$.inArray(str2, list_mem)][$.inArray(str3, list_obj)][list_obj.length-2] - obj_prop[number_id][$.inArray(str1, list_obj)][list_obj.length-1]) * 180 / Math.PI;
+        console.log('向けるやつきました');
         var emit = {emit:'scratch/ang', obj: $.inArray(str1, list_obj), num1: num, num2: 0, id: socket_id, str: '', emitsw: 1};
         if(!checkJSONarray(emit,send_server)){
             send_server.push(emit);
