@@ -1,5 +1,5 @@
 (function(ext) {
-    alert("Connect! Ver 11.26.01");
+    alert("Connect! Ver 11.26.02");
     var socket = { on: function(){} };
     var socket_id = '';
     var member_id = 0;
@@ -85,6 +85,12 @@
                     console.log('自分の'+data.obj2+'が、'+data.mem1+'の'+data.obj1+'にから離れた');
                 }
         }
+        });
+        socket.on('server/disconnect', function(data) { 
+            if(data.id = member_id){
+                alart('切断されました');
+                socket.disconnect();
+            }
         });
         //接続が確立したら自分のIDを取得する
         socket.on('connect', function() { 
