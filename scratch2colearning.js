@@ -1,5 +1,5 @@
 (function(ext) {
-    alert("Connect! Ver 11.27.01");
+    alert("Connect! Ver 11.27.02");
     var socket = { on: function(){} };
     var socket_id = '';
     var member_id = 0;
@@ -309,7 +309,7 @@
     // ブロックと関数のひも付け
     var descriptor = {
         blocks: [
-            [' ', 'Connect %s', 'Connect','192.168.2.104'],
+            [' ', 'Connect %s', 'Connect','192.168.1.62'],
             ['r', 'Socket ID', 'Obj_getid'],
             ['r', 'emit', 'Obj_emit'],
             [' ', '%m.List_obj を %n 歩動かす', 'Obj_move', list_obj[0],10],
