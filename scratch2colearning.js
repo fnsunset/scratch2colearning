@@ -160,7 +160,6 @@
         }
         if(timer > 100){
             timer = 100;
-            descriptor.menus.List_obj = ['A','B','C','E'];                          //目印
         }else{
             timer++;
         }
@@ -335,7 +334,7 @@
             List_obj:list_obj
         }
     };
-    
+
     setInterval(_timer,wait_time);
     // 最後にExtensionを登録する
     ScratchExtensions.register('Scratch 2 Co-learning', descriptor, ext);
