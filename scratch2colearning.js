@@ -1,5 +1,5 @@
 (function(ext) {
-    alert("Connect! Ver 11.27.02");
+    alert("Connect! Ver 11.28.01");
     var socket = { on: function(){} };
     var socket_id = '';
     var member_id = 0;
@@ -160,7 +160,7 @@
         }
         if(timer > 100){
             timer = 100;
-            list_mem = ['A','B','C','E'];
+            descriptor.menus.List_obj = ['A','B','C','E'];                          //目印
         }else{
             timer++;
         }
@@ -335,7 +335,7 @@
             List_obj:list_obj
         }
     };
-
+    
     setInterval(_timer,wait_time);
     // 最後にExtensionを登録する
     ScratchExtensions.register('Scratch 2 Co-learning', descriptor, ext);
