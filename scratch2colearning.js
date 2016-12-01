@@ -43,8 +43,10 @@
             socket.emit('scratch/hello', { id: socket_id });
         });
         socket.on('server/send', function (data) {
-            if($.inArray(data.mes, say)==-1){
-                say.unshift(data.mes);
+            if (data.group == group_id ){
+                if($.inArray(data.mes, say)==-1){
+                    say.unshift(data.mes);
+                }
             }
         });
         socket.on('server/memupdate', function (data) {
@@ -333,7 +335,7 @@
         if(str!=''){
             timer = 0;
             if(timer2 >5){
-                socket.emit('scratch/send', {id: socket_id, mes: str});
+                socket.emit('scratch/send', {Group:group_id, id: socket_id, mes: str});
                 timer2 = 0;
             }
         }
