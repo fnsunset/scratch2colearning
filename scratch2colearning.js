@@ -43,7 +43,7 @@
             socket.emit('scratch/hello', { id: socket_id });
         });
         socket.on('server/send', function (data) {
-            if (data.group == group_id ){
+            if (data.Group == group_id ){
                 if($.inArray(data.mes, say)==-1){
                     say.unshift(data.mes);
                 }
