@@ -338,7 +338,7 @@
             }
         }
     };
-    ext.Obj_proparty = function() {
+    ext.Obj_property = function() {
         return group_id * (number_id + 1);
     }
     // ブロックと関数のひも付け
