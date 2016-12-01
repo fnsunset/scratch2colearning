@@ -346,7 +346,7 @@
         blocks: [
             [' ', 'Connect %s', 'Connect','192.168.1.62'],
             ['r', 'Socket ID', 'Obj_getid'],
-            ['r', 'propaty', 'Obj_propaty'],
+            ['r', 'property', 'Obj_property'],
             [' ', '%m.List_obj を %n 歩動かす', 'Obj_move', '',10],
             [' ', '%m.List_obj を時計回りに %n 度回す', 'Obj_cw', '', 15],
             [' ', '%m.List_obj を反時計回りに %n 度回す', 'Obj_rcw', '', 15],
