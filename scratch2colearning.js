@@ -1,5 +1,5 @@
 (function(ext) {
-    alert("Connect! Ver 11.28.01");
+    alert("Connect! Ver 12.01.01");
     var socket = { on: function(){} };
     var socket_id = '';
     var member_id = 0;
@@ -282,7 +282,7 @@
         return(obj_prop[$.inArray(str1, list_mem)][$.inArray(str2, list_obj)][list_obj.length-1]);
     };
     ext.Obj_hit = function(str1,str2,str3) {
-        if(obj_prop[$.inArray(str1, list_mem)][$.inArray(str2, list_obj)][$.inArray(str3, list_obj)] != 0){
+        if(obj_prop[$.inArray(str2, list_mem)][$.inArray(str3, list_obj)][$.inArray(str1, list_obj)] != 0){
             return(true);
         }else{
             return(false);
@@ -316,7 +316,7 @@
             [' ', '%m.List_obj を時計回りに %n 度回す', 'Obj_cw', '', 15],
             [' ', '%m.List_obj を反時計回りに %n 度回す', 'Obj_rcw', '', 15],
             [' ', '%m.List_obj を %n 度に向ける', 'Obj_ang', '', 10],
-            [' ', '自分の %m.List_obj を %m.List_member さんの %m.List_obj に向ける', 'Obj_direct', '', '', ''],
+            [' ', '%m.List_obj を %m.List_member さんの %m.List_obj に向ける', 'Obj_direct', '', '', ''],
             [' ', '%m.List_obj のx座標を %n ずつ変える', 'Obj_movex', '', 10],
             [' ', '%m.List_obj のｙ座標を %n ずつ変える', 'Obj_movey', '', 10],
             [' ', '%m.List_obj を真ん中に動かす', 'Obj_center', ''],
@@ -325,7 +325,7 @@
             [' ', '%m.List_obj を 隠す', 'Obj_hide', ''],
             ['r', '%m.List_member さんの %m.List_obj のx座標', 'Obj_getx', '', ''],
             ['r', '%m.List_member さんの %m.List_obj のy座標', 'Obj_gety', '', ''],
-            ['b', '%m.List_member さんの %m.List_obj と自分の %m.List_obj が触れた', 'Obj_hit', '', '', ''],
+            ['b', '%m.List_obj が %m.List_member さんの %m.List_obj と触れた', 'Obj_hit', '', '', ''],
             ['h', '%s を受け取ったとき','Obj_res','Hello'],
             [' ','%s を送る','Obj_send','Hello']
         ],
