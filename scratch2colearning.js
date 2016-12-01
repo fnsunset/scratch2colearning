@@ -1,5 +1,5 @@
 (function(ext) {
-    alert("Connect! Ver 12.01.02");
+    alert("Connect! Ver 12.01.03");
     var socket = { on: function(){} };
     var socket_id = '';
     var member_id = 0;
