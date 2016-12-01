@@ -29,7 +29,7 @@
     var execution = [];
     var my_name = '';
     var log_size = 3;
-    var wait_time = 40;
+    var wait_time = 400000000;
     for(var cnta = 0; cnta < log_size; cnta++){
                 send_log[cnta] = [];
     }
