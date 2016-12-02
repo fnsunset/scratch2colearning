@@ -1,5 +1,5 @@
 (function(ext) {
-    alert("Connect! Ver 12.03.02");
+    alert("Connect! Ver 12.03.03");
     var socket = { on: function(){} };
     var socket_id = '';
     var member_id = 0;
@@ -66,7 +66,9 @@
             member_id = data.idnumber;
         });
         socket.on('server/collision_on', function (data) {
+            console.log('当たり判定を受信');
             if (data.group == group_id ){
+                console.log('自分のグループと判断');
                 if(data.mem1 == member_id){
                     obj_prop[data.mem2][data.obj2][data.obj1] = 1;
                     console.log('自分の'+data.obj1+'が、'+data.mem2+'の'+data.obj2+'に接触');
@@ -85,7 +87,7 @@
                     }
                     if(data.mem2 == member_id){
                         obj_prop[data.mem1][data.obj1][data.obj2] = 0;
-                        console.log('自分の'+data.obj2+'が、'+data.mem1+'の'+data.obj1+'にから離れた');
+                        console.log('自分の'+data.obj2+'が、'+data.mem1+'の'+data.obj1+'から離れた');
                     }
             }
         });
