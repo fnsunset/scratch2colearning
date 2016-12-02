@@ -1,5 +1,5 @@
 (function(ext) {
-    alert("Connect! Ver 12.03.01");
+    alert("Connect! Ver 12.03.02");
     var socket = { on: function(){} };
     var socket_id = '';
     var member_id = 0;
@@ -89,7 +89,7 @@
                     }
             }
         });
-        socket.on('server/collision_disp',function(){
+        socket.on('server/collision_disp',function(data){
             if (data.group == group_id ){
                 if(data.mem == member_id){
                     for(var cnta = 0;cnta < list_mem.length;cnta++){
