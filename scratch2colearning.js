@@ -1,5 +1,5 @@
 (function(ext) {
-    alert("Connect! Ver 12.03.03");
+    alert("Connect! Ver 12.03.04");
     var socket = { on: function(){} };
     var socket_id = '';
     var member_id = 0;
@@ -69,11 +69,11 @@
             console.log('当たり判定を受信');
             if (data.group == group_id ){
                 console.log('自分のグループと判断');
-                if(data.mem1 == member_id){
+                if(data.mem1 == number_id){
                     obj_prop[data.mem2][data.obj2][data.obj1] = 1;
                     console.log('自分の'+data.obj1+'が、'+data.mem2+'の'+data.obj2+'に接触');
                 }
-                if(data.mem2 == member_id){
+                if(data.mem2 == number_id){
                     obj_prop[data.mem1][data.obj1][data.obj2] = 1;
                     console.log('自分の'+data.obj2+'が、'+data.mem1+'の'+data.obj1+'に接触');
                 }
@@ -81,11 +81,11 @@
         });
         socket.on('server/collision_off', function (data) {
             if (data.group == group_id ){
-                    if(data.mem1 == member_id){
+                    if(data.mem1 == number_id){
                         obj_prop[data.mem2][data.obj2][data.obj1] = 0;
                         console.log('自分の'+data.obj1+'が、'+data.mem2+'の'+data.obj2+'から離れた');
                     }
-                    if(data.mem2 == member_id){
+                    if(data.mem2 == number_id){
                         obj_prop[data.mem1][data.obj1][data.obj2] = 0;
                         console.log('自分の'+data.obj2+'が、'+data.mem1+'の'+data.obj1+'から離れた');
                     }
@@ -94,7 +94,7 @@
         socket.on('server/collision_disp',function(data){
             if (data.group == group_id ){
                 console.log(data.mem+'の'+data.obj+'が隠れたので当たり判定をクリア');
-                if(data.mem == member_id){
+                if(data.mem == number_id){
                     for(var cnta = 0; cnta < list_mem.length; cnta++){
                         for(var cntb = 0; cntb < list_obj.length; cntb++){
                         obj_prop[cnta][cntb][data.obj] = 0;
