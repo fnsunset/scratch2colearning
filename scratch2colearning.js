@@ -91,9 +91,10 @@
         });
         socket.on('server/collision_disp',function(data){
             if (data.group == group_id ){
+                console.log(data.mem+'の'+data.obj+'が隠れたので当たり判定をクリア');
                 if(data.mem == member_id){
-                    for(var cnta = 0;cnta < list_mem.length;cnta++){
-                        for(var cntb = 0;cntb < list_obj.length;cntb++){
+                    for(var cnta = 0; cnta < list_mem.length; cnta++){
+                        for(var cntb = 0; cntb < list_obj.length; cntb++){
                         obj_prop[cnta][cntb][data.obj] = 0;
                         }
                     }
