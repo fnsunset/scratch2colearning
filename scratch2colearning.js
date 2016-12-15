@@ -363,7 +363,7 @@
     // ブロックと関数のひも付け
     var descriptor = {
         blocks: [
-            [' ', 'Connect %s', 'Connect','192.168.1.62'],
+            [' ', 'Connect %s', 'Connect','192.168.2.104'],
             ['r', 'Socket ID', 'Obj_getid'],
             ['r', 'property', 'Obj_property'],
             [' ', '%m.List_obj を %n 歩動かす', 'Obj_move', '',10],
