@@ -1,5 +1,5 @@
 (function(ext) {
-    alert("Connect! Ver 12.15.01");
+    alert("Welcome! Ver release");
     var socket = { on: function(){} };
     var socket_id = '';
     var member_id = 0;
@@ -391,6 +391,6 @@
 
     setInterval(_timer,wait_time);
     // 最後にExtensionを登録する
-    ScratchExtensions.register('Scratch 2 Co-learning', descriptor, ext);
+    ScratchExtensions.register('Scratch 4 Co-learning', descriptor, ext);
 
 })({});
